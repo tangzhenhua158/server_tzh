@@ -37,7 +37,8 @@ INCLUDE += -I$(make_basedir)/common
 INCLUDE += -I./
 INCLUDE += -I$(make_basedir)/common/muduo/net/
 INCLUDE += -I$(make_basedir)/common/muduo/base/
-INCLUDE += -I../../
+INCLUDE += -I../
+INCLUDE += -I../protocol_include/
 INCLUDE += -I$(BOOST_ROOT)/boost_1_60_0/
 
 #	vim: ft=make

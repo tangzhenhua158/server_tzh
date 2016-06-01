@@ -26,3 +26,7 @@
 *.exe
 *.out
 *.app
+/rpc_server/login_client
+/rpc_server/loginserver
+/test_server/test_client
+/test_server/test_d
