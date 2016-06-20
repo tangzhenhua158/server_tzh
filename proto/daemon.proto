@@ -1,0 +1,89 @@
+package daemon;
+option cc_generic_services = true;
+option java_outer_classname = "DaemonPro";
+
+enum daemon_msg_ret
+{
+  ok = 1;
+  fail = 2;
+  notexist = 3;
+  exist = 4;
+}
+
+message serverInfo{
+	required int32 ip = 1;
+	required int32 port = 2;
+	required string servername = 3;
+	required int64 serverid = 4;
+	optional string extend = 5;
+}
+
+message registerReq{
+	required int32 ip = 1;
+	required int32 port = 2;
+	required string servername = 3;
+	optional string extend = 4;
+}
+
+message registerRsp{
+	required daemon_msg_ret ret = 1;
+	required int64 serverid = 2;
+	required string servername = 3;
+}
+
+message loginOutReq{
+	required int64 serverid = 1;
+	required string servername = 2;
+}
+
+message loginOutRsp{
+	required daemon_msg_ret ret = 1;
+}
+
+message heartReq{
+	required int64 serverid = 1;
+	required string servername = 2;
+}
+
+message heartRsp{
+	required daemon_msg_ret ret = 1;
+}
+
+message queryServerReq{
+	required string servername = 1;
+}
+
+message queryServerRsp{
+	repeated serverInfo serInfos = 1;
+}
+
+message queryDaemonMasterReq{
+	
+}
+
+message queryDaemonMasterRsp{
+	required serverInfo serInfo = 1;
+}
+
+message syncToServerReq{
+	required serverInfo serInfo = 1;
+}
+
+message syncToServerRsp{
+	required daemon_msg_ret ret = 1;
+}
+
+message electionMasterReq{
+	required serverInfo serInfo = 1;
+}
+
+message electionMasterRsp{
+	required daemon_msg_ret ret = 1;
+}
+
+service DaemonService
+{
+rpc Register(registerReq) returns (registerRsp);
+
+rpc LoginOut(loginOutReq) returns (loginOutRsp);
+}
