@@ -45,11 +45,13 @@ public:
 
 	void register_server(const daemon_name::registerReq & req, daemon_name::registerRsp & rsp)
 	{
+		LOG_INFO << __FUNCTION__;
 		stub_.Register(NULL,&req,&rsp,NewCallback(this, &DaemonClient::_handleRegister, &rsp));
 	}
 
 	void LoginOut(const daemon_name::loginOutReq & req, daemon_name::loginOutRsp & rsp)
 	{
+		LOG_INFO << __FUNCTION__;
 		stub_.LoginOut(NULL,&req,&rsp,NewCallback(this, &DaemonClient::_handleLoginOut, &rsp));
 	}
 

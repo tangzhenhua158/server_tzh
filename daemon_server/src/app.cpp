@@ -15,6 +15,7 @@ namespace daemon_name
 
 	App::~App()
 	{
+		LOG_INFO << __FUNCTION__;
 		if(m_pDaemonClient.get()) 
 		{
 			daemon_name::loginOutReq  req;
@@ -32,7 +33,7 @@ namespace daemon_name
 		m_pDaemonClient->connect();
 
 		//注册初始化函数
-		m_pLoop->runAfter(1.0,boost::bind(&App::init,this));
+		m_pLoop->runAfter(5.0,boost::bind(&App::init,this));
 
 		//注册定时器
 		m_pLoop->runEvery(5.0,boost::bind(&App::timer,this));
