@@ -1,15 +1,21 @@
 #ifndef __DAEMON_APP_H__
 #define __DAEMON_APP_H__
 
-class DaemonClient;
-class EventLoop;
+#include <muduo/net/EventLoop.h>
 
-namespace daemon
+using namespace muduo;
+using namespace muduo::net;
+
+
+class DaemonClient;
+//class EventLoop;
+
+namespace daemon_name
 {
 	class App
 	{
 	public:
-		App(EventLoop *pLoop);
+		App(EventLoop *pLoop,const InetAddress & address);
 		~App();
 		void start();
 	private:

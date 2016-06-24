@@ -28,7 +28,7 @@
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
-namespace daemon {
+namespace daemon_name {
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_daemon_2eproto();
@@ -173,7 +173,7 @@ class serverInfo : public ::google::protobuf::Message {
   inline ::std::string* release_extend();
   inline void set_allocated_extend(::std::string* extend);
 
-  // @@protoc_insertion_point(class_scope:daemon.serverInfo)
+  // @@protoc_insertion_point(class_scope:daemon_name.serverInfo)
  private:
   inline void set_has_ip();
   inline void clear_has_ip();
@@ -298,7 +298,7 @@ class registerReq : public ::google::protobuf::Message {
   inline ::std::string* release_extend();
   inline void set_allocated_extend(::std::string* extend);
 
-  // @@protoc_insertion_point(class_scope:daemon.registerReq)
+  // @@protoc_insertion_point(class_scope:daemon_name.registerReq)
  private:
   inline void set_has_ip();
   inline void clear_has_ip();
@@ -382,12 +382,12 @@ class registerRsp : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   inline bool has_ret() const;
   inline void clear_ret();
   static const int kRetFieldNumber = 1;
-  inline ::daemon::daemon_msg_ret ret() const;
-  inline void set_ret(::daemon::daemon_msg_ret value);
+  inline ::daemon_name::daemon_msg_ret ret() const;
+  inline void set_ret(::daemon_name::daemon_msg_ret value);
 
   // required int64 serverid = 2;
   inline bool has_serverid() const;
@@ -408,7 +408,7 @@ class registerRsp : public ::google::protobuf::Message {
   inline ::std::string* release_servername();
   inline void set_allocated_servername(::std::string* servername);
 
-  // @@protoc_insertion_point(class_scope:daemon.registerRsp)
+  // @@protoc_insertion_point(class_scope:daemon_name.registerRsp)
  private:
   inline void set_has_ret();
   inline void clear_has_ret();
@@ -508,7 +508,7 @@ class loginOutReq : public ::google::protobuf::Message {
   inline ::std::string* release_servername();
   inline void set_allocated_servername(::std::string* servername);
 
-  // @@protoc_insertion_point(class_scope:daemon.loginOutReq)
+  // @@protoc_insertion_point(class_scope:daemon_name.loginOutReq)
  private:
   inline void set_has_serverid();
   inline void clear_has_serverid();
@@ -586,14 +586,14 @@ class loginOutRsp : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   inline bool has_ret() const;
   inline void clear_ret();
   static const int kRetFieldNumber = 1;
-  inline ::daemon::daemon_msg_ret ret() const;
-  inline void set_ret(::daemon::daemon_msg_ret value);
+  inline ::daemon_name::daemon_msg_ret ret() const;
+  inline void set_ret(::daemon_name::daemon_msg_ret value);
 
-  // @@protoc_insertion_point(class_scope:daemon.loginOutRsp)
+  // @@protoc_insertion_point(class_scope:daemon_name.loginOutRsp)
  private:
   inline void set_has_ret();
   inline void clear_has_ret();
@@ -687,7 +687,7 @@ class heartReq : public ::google::protobuf::Message {
   inline ::std::string* release_servername();
   inline void set_allocated_servername(::std::string* servername);
 
-  // @@protoc_insertion_point(class_scope:daemon.heartReq)
+  // @@protoc_insertion_point(class_scope:daemon_name.heartReq)
  private:
   inline void set_has_serverid();
   inline void clear_has_serverid();
@@ -765,14 +765,14 @@ class heartRsp : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   inline bool has_ret() const;
   inline void clear_ret();
   static const int kRetFieldNumber = 1;
-  inline ::daemon::daemon_msg_ret ret() const;
-  inline void set_ret(::daemon::daemon_msg_ret value);
+  inline ::daemon_name::daemon_msg_ret ret() const;
+  inline void set_ret(::daemon_name::daemon_msg_ret value);
 
-  // @@protoc_insertion_point(class_scope:daemon.heartRsp)
+  // @@protoc_insertion_point(class_scope:daemon_name.heartRsp)
  private:
   inline void set_has_ret();
   inline void clear_has_ret();
@@ -859,7 +859,7 @@ class queryServerReq : public ::google::protobuf::Message {
   inline ::std::string* release_servername();
   inline void set_allocated_servername(::std::string* servername);
 
-  // @@protoc_insertion_point(class_scope:daemon.queryServerReq)
+  // @@protoc_insertion_point(class_scope:daemon_name.queryServerReq)
  private:
   inline void set_has_servername();
   inline void clear_has_servername();
@@ -934,24 +934,24 @@ class queryServerRsp : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated .daemon.serverInfo serInfos = 1;
+  // repeated .daemon_name.serverInfo serInfos = 1;
   inline int serinfos_size() const;
   inline void clear_serinfos();
   static const int kSerInfosFieldNumber = 1;
-  inline const ::daemon::serverInfo& serinfos(int index) const;
-  inline ::daemon::serverInfo* mutable_serinfos(int index);
-  inline ::daemon::serverInfo* add_serinfos();
-  inline const ::google::protobuf::RepeatedPtrField< ::daemon::serverInfo >&
+  inline const ::daemon_name::serverInfo& serinfos(int index) const;
+  inline ::daemon_name::serverInfo* mutable_serinfos(int index);
+  inline ::daemon_name::serverInfo* add_serinfos();
+  inline const ::google::protobuf::RepeatedPtrField< ::daemon_name::serverInfo >&
       serinfos() const;
-  inline ::google::protobuf::RepeatedPtrField< ::daemon::serverInfo >*
+  inline ::google::protobuf::RepeatedPtrField< ::daemon_name::serverInfo >*
       mutable_serinfos();
 
-  // @@protoc_insertion_point(class_scope:daemon.queryServerRsp)
+  // @@protoc_insertion_point(class_scope:daemon_name.queryServerRsp)
  private:
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::google::protobuf::RepeatedPtrField< ::daemon::serverInfo > serinfos_;
+  ::google::protobuf::RepeatedPtrField< ::daemon_name::serverInfo > serinfos_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
@@ -1019,7 +1019,7 @@ class queryDaemonMasterReq : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:daemon.queryDaemonMasterReq)
+  // @@protoc_insertion_point(class_scope:daemon_name.queryDaemonMasterReq)
  private:
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
@@ -1091,23 +1091,23 @@ class queryDaemonMasterRsp : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required .daemon.serverInfo serInfo = 1;
+  // required .daemon_name.serverInfo serInfo = 1;
   inline bool has_serinfo() const;
   inline void clear_serinfo();
   static const int kSerInfoFieldNumber = 1;
-  inline const ::daemon::serverInfo& serinfo() const;
-  inline ::daemon::serverInfo* mutable_serinfo();
-  inline ::daemon::serverInfo* release_serinfo();
-  inline void set_allocated_serinfo(::daemon::serverInfo* serinfo);
+  inline const ::daemon_name::serverInfo& serinfo() const;
+  inline ::daemon_name::serverInfo* mutable_serinfo();
+  inline ::daemon_name::serverInfo* release_serinfo();
+  inline void set_allocated_serinfo(::daemon_name::serverInfo* serinfo);
 
-  // @@protoc_insertion_point(class_scope:daemon.queryDaemonMasterRsp)
+  // @@protoc_insertion_point(class_scope:daemon_name.queryDaemonMasterRsp)
  private:
   inline void set_has_serinfo();
   inline void clear_has_serinfo();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::daemon::serverInfo* serinfo_;
+  ::daemon_name::serverInfo* serinfo_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
@@ -1175,23 +1175,23 @@ class syncToServerReq : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required .daemon.serverInfo serInfo = 1;
+  // required .daemon_name.serverInfo serInfo = 1;
   inline bool has_serinfo() const;
   inline void clear_serinfo();
   static const int kSerInfoFieldNumber = 1;
-  inline const ::daemon::serverInfo& serinfo() const;
-  inline ::daemon::serverInfo* mutable_serinfo();
-  inline ::daemon::serverInfo* release_serinfo();
-  inline void set_allocated_serinfo(::daemon::serverInfo* serinfo);
+  inline const ::daemon_name::serverInfo& serinfo() const;
+  inline ::daemon_name::serverInfo* mutable_serinfo();
+  inline ::daemon_name::serverInfo* release_serinfo();
+  inline void set_allocated_serinfo(::daemon_name::serverInfo* serinfo);
 
-  // @@protoc_insertion_point(class_scope:daemon.syncToServerReq)
+  // @@protoc_insertion_point(class_scope:daemon_name.syncToServerReq)
  private:
   inline void set_has_serinfo();
   inline void clear_has_serinfo();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::daemon::serverInfo* serinfo_;
+  ::daemon_name::serverInfo* serinfo_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
@@ -1259,14 +1259,14 @@ class syncToServerRsp : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   inline bool has_ret() const;
   inline void clear_ret();
   static const int kRetFieldNumber = 1;
-  inline ::daemon::daemon_msg_ret ret() const;
-  inline void set_ret(::daemon::daemon_msg_ret value);
+  inline ::daemon_name::daemon_msg_ret ret() const;
+  inline void set_ret(::daemon_name::daemon_msg_ret value);
 
-  // @@protoc_insertion_point(class_scope:daemon.syncToServerRsp)
+  // @@protoc_insertion_point(class_scope:daemon_name.syncToServerRsp)
  private:
   inline void set_has_ret();
   inline void clear_has_ret();
@@ -1341,23 +1341,23 @@ class electionMasterReq : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required .daemon.serverInfo serInfo = 1;
+  // required .daemon_name.serverInfo serInfo = 1;
   inline bool has_serinfo() const;
   inline void clear_serinfo();
   static const int kSerInfoFieldNumber = 1;
-  inline const ::daemon::serverInfo& serinfo() const;
-  inline ::daemon::serverInfo* mutable_serinfo();
-  inline ::daemon::serverInfo* release_serinfo();
-  inline void set_allocated_serinfo(::daemon::serverInfo* serinfo);
+  inline const ::daemon_name::serverInfo& serinfo() const;
+  inline ::daemon_name::serverInfo* mutable_serinfo();
+  inline ::daemon_name::serverInfo* release_serinfo();
+  inline void set_allocated_serinfo(::daemon_name::serverInfo* serinfo);
 
-  // @@protoc_insertion_point(class_scope:daemon.electionMasterReq)
+  // @@protoc_insertion_point(class_scope:daemon_name.electionMasterReq)
  private:
   inline void set_has_serinfo();
   inline void clear_has_serinfo();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::daemon::serverInfo* serinfo_;
+  ::daemon_name::serverInfo* serinfo_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
@@ -1425,14 +1425,14 @@ class electionMasterRsp : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   inline bool has_ret() const;
   inline void clear_ret();
   static const int kRetFieldNumber = 1;
-  inline ::daemon::daemon_msg_ret ret() const;
-  inline void set_ret(::daemon::daemon_msg_ret value);
+  inline ::daemon_name::daemon_msg_ret ret() const;
+  inline void set_ret(::daemon_name::daemon_msg_ret value);
 
-  // @@protoc_insertion_point(class_scope:daemon.electionMasterRsp)
+  // @@protoc_insertion_point(class_scope:daemon_name.electionMasterRsp)
  private:
   inline void set_has_ret();
   inline void clear_has_ret();
@@ -1467,12 +1467,12 @@ class DaemonService : public ::google::protobuf::Service {
   static const ::google::protobuf::ServiceDescriptor* descriptor();
 
   virtual void Register(::google::protobuf::RpcController* controller,
-                       const ::daemon::registerReq* request,
-                       ::daemon::registerRsp* response,
+                       const ::daemon_name::registerReq* request,
+                       ::daemon_name::registerRsp* response,
                        ::google::protobuf::Closure* done);
   virtual void LoginOut(::google::protobuf::RpcController* controller,
-                       const ::daemon::loginOutReq* request,
-                       ::daemon::loginOutRsp* response,
+                       const ::daemon_name::loginOutReq* request,
+                       ::daemon_name::loginOutRsp* response,
                        ::google::protobuf::Closure* done);
 
   // implements Service ----------------------------------------------
@@ -1504,12 +1504,12 @@ class DaemonService_Stub : public DaemonService {
   // implements DaemonService ------------------------------------------
 
   void Register(::google::protobuf::RpcController* controller,
-                       const ::daemon::registerReq* request,
-                       ::daemon::registerRsp* response,
+                       const ::daemon_name::registerReq* request,
+                       ::daemon_name::registerRsp* response,
                        ::google::protobuf::Closure* done);
   void LoginOut(::google::protobuf::RpcController* controller,
-                       const ::daemon::loginOutReq* request,
-                       ::daemon::loginOutRsp* response,
+                       const ::daemon_name::loginOutReq* request,
+                       ::daemon_name::loginOutRsp* response,
                        ::google::protobuf::Closure* done);
  private:
   ::google::protobuf::RpcChannel* channel_;
@@ -1923,7 +1923,7 @@ inline void registerReq::set_allocated_extend(::std::string* extend) {
 
 // registerRsp
 
-// required .daemon.daemon_msg_ret ret = 1;
+// required .daemon_name.daemon_msg_ret ret = 1;
 inline bool registerRsp::has_ret() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -1937,11 +1937,11 @@ inline void registerRsp::clear_ret() {
   ret_ = 1;
   clear_has_ret();
 }
-inline ::daemon::daemon_msg_ret registerRsp::ret() const {
-  return static_cast< ::daemon::daemon_msg_ret >(ret_);
+inline ::daemon_name::daemon_msg_ret registerRsp::ret() const {
+  return static_cast< ::daemon_name::daemon_msg_ret >(ret_);
 }
-inline void registerRsp::set_ret(::daemon::daemon_msg_ret value) {
-  assert(::daemon::daemon_msg_ret_IsValid(value));
+inline void registerRsp::set_ret(::daemon_name::daemon_msg_ret value) {
+  assert(::daemon_name::daemon_msg_ret_IsValid(value));
   set_has_ret();
   ret_ = value;
 }
@@ -2138,7 +2138,7 @@ inline void loginOutReq::set_allocated_servername(::std::string* servername) {
 
 // loginOutRsp
 
-// required .daemon.daemon_msg_ret ret = 1;
+// required .daemon_name.daemon_msg_ret ret = 1;
 inline bool loginOutRsp::has_ret() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -2152,11 +2152,11 @@ inline void loginOutRsp::clear_ret() {
   ret_ = 1;
   clear_has_ret();
 }
-inline ::daemon::daemon_msg_ret loginOutRsp::ret() const {
-  return static_cast< ::daemon::daemon_msg_ret >(ret_);
+inline ::daemon_name::daemon_msg_ret loginOutRsp::ret() const {
+  return static_cast< ::daemon_name::daemon_msg_ret >(ret_);
 }
-inline void loginOutRsp::set_ret(::daemon::daemon_msg_ret value) {
-  assert(::daemon::daemon_msg_ret_IsValid(value));
+inline void loginOutRsp::set_ret(::daemon_name::daemon_msg_ret value) {
+  assert(::daemon_name::daemon_msg_ret_IsValid(value));
   set_has_ret();
   ret_ = value;
 }
@@ -2261,7 +2261,7 @@ inline void heartReq::set_allocated_servername(::std::string* servername) {
 
 // heartRsp
 
-// required .daemon.daemon_msg_ret ret = 1;
+// required .daemon_name.daemon_msg_ret ret = 1;
 inline bool heartRsp::has_ret() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -2275,11 +2275,11 @@ inline void heartRsp::clear_ret() {
   ret_ = 1;
   clear_has_ret();
 }
-inline ::daemon::daemon_msg_ret heartRsp::ret() const {
-  return static_cast< ::daemon::daemon_msg_ret >(ret_);
+inline ::daemon_name::daemon_msg_ret heartRsp::ret() const {
+  return static_cast< ::daemon_name::daemon_msg_ret >(ret_);
 }
-inline void heartRsp::set_ret(::daemon::daemon_msg_ret value) {
-  assert(::daemon::daemon_msg_ret_IsValid(value));
+inline void heartRsp::set_ret(::daemon_name::daemon_msg_ret value) {
+  assert(::daemon_name::daemon_msg_ret_IsValid(value));
   set_has_ret();
   ret_ = value;
 }
@@ -2362,27 +2362,27 @@ inline void queryServerReq::set_allocated_servername(::std::string* servername) 
 
 // queryServerRsp
 
-// repeated .daemon.serverInfo serInfos = 1;
+// repeated .daemon_name.serverInfo serInfos = 1;
 inline int queryServerRsp::serinfos_size() const {
   return serinfos_.size();
 }
 inline void queryServerRsp::clear_serinfos() {
   serinfos_.Clear();
 }
-inline const ::daemon::serverInfo& queryServerRsp::serinfos(int index) const {
+inline const ::daemon_name::serverInfo& queryServerRsp::serinfos(int index) const {
   return serinfos_.Get(index);
 }
-inline ::daemon::serverInfo* queryServerRsp::mutable_serinfos(int index) {
+inline ::daemon_name::serverInfo* queryServerRsp::mutable_serinfos(int index) {
   return serinfos_.Mutable(index);
 }
-inline ::daemon::serverInfo* queryServerRsp::add_serinfos() {
+inline ::daemon_name::serverInfo* queryServerRsp::add_serinfos() {
   return serinfos_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::daemon::serverInfo >&
+inline const ::google::protobuf::RepeatedPtrField< ::daemon_name::serverInfo >&
 queryServerRsp::serinfos() const {
   return serinfos_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::daemon::serverInfo >*
+inline ::google::protobuf::RepeatedPtrField< ::daemon_name::serverInfo >*
 queryServerRsp::mutable_serinfos() {
   return &serinfos_;
 }
@@ -2395,7 +2395,7 @@ queryServerRsp::mutable_serinfos() {
 
 // queryDaemonMasterRsp
 
-// required .daemon.serverInfo serInfo = 1;
+// required .daemon_name.serverInfo serInfo = 1;
 inline bool queryDaemonMasterRsp::has_serinfo() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -2406,24 +2406,24 @@ inline void queryDaemonMasterRsp::clear_has_serinfo() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void queryDaemonMasterRsp::clear_serinfo() {
-  if (serinfo_ != NULL) serinfo_->::daemon::serverInfo::Clear();
+  if (serinfo_ != NULL) serinfo_->::daemon_name::serverInfo::Clear();
   clear_has_serinfo();
 }
-inline const ::daemon::serverInfo& queryDaemonMasterRsp::serinfo() const {
+inline const ::daemon_name::serverInfo& queryDaemonMasterRsp::serinfo() const {
   return serinfo_ != NULL ? *serinfo_ : *default_instance_->serinfo_;
 }
-inline ::daemon::serverInfo* queryDaemonMasterRsp::mutable_serinfo() {
+inline ::daemon_name::serverInfo* queryDaemonMasterRsp::mutable_serinfo() {
   set_has_serinfo();
-  if (serinfo_ == NULL) serinfo_ = new ::daemon::serverInfo;
+  if (serinfo_ == NULL) serinfo_ = new ::daemon_name::serverInfo;
   return serinfo_;
 }
-inline ::daemon::serverInfo* queryDaemonMasterRsp::release_serinfo() {
+inline ::daemon_name::serverInfo* queryDaemonMasterRsp::release_serinfo() {
   clear_has_serinfo();
-  ::daemon::serverInfo* temp = serinfo_;
+  ::daemon_name::serverInfo* temp = serinfo_;
   serinfo_ = NULL;
   return temp;
 }
-inline void queryDaemonMasterRsp::set_allocated_serinfo(::daemon::serverInfo* serinfo) {
+inline void queryDaemonMasterRsp::set_allocated_serinfo(::daemon_name::serverInfo* serinfo) {
   delete serinfo_;
   serinfo_ = serinfo;
   if (serinfo) {
@@ -2437,7 +2437,7 @@ inline void queryDaemonMasterRsp::set_allocated_serinfo(::daemon::serverInfo* se
 
 // syncToServerReq
 
-// required .daemon.serverInfo serInfo = 1;
+// required .daemon_name.serverInfo serInfo = 1;
 inline bool syncToServerReq::has_serinfo() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -2448,24 +2448,24 @@ inline void syncToServerReq::clear_has_serinfo() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void syncToServerReq::clear_serinfo() {
-  if (serinfo_ != NULL) serinfo_->::daemon::serverInfo::Clear();
+  if (serinfo_ != NULL) serinfo_->::daemon_name::serverInfo::Clear();
   clear_has_serinfo();
 }
-inline const ::daemon::serverInfo& syncToServerReq::serinfo() const {
+inline const ::daemon_name::serverInfo& syncToServerReq::serinfo() const {
   return serinfo_ != NULL ? *serinfo_ : *default_instance_->serinfo_;
 }
-inline ::daemon::serverInfo* syncToServerReq::mutable_serinfo() {
+inline ::daemon_name::serverInfo* syncToServerReq::mutable_serinfo() {
   set_has_serinfo();
-  if (serinfo_ == NULL) serinfo_ = new ::daemon::serverInfo;
+  if (serinfo_ == NULL) serinfo_ = new ::daemon_name::serverInfo;
   return serinfo_;
 }
-inline ::daemon::serverInfo* syncToServerReq::release_serinfo() {
+inline ::daemon_name::serverInfo* syncToServerReq::release_serinfo() {
   clear_has_serinfo();
-  ::daemon::serverInfo* temp = serinfo_;
+  ::daemon_name::serverInfo* temp = serinfo_;
   serinfo_ = NULL;
   return temp;
 }
-inline void syncToServerReq::set_allocated_serinfo(::daemon::serverInfo* serinfo) {
+inline void syncToServerReq::set_allocated_serinfo(::daemon_name::serverInfo* serinfo) {
   delete serinfo_;
   serinfo_ = serinfo;
   if (serinfo) {
@@ -2479,7 +2479,7 @@ inline void syncToServerReq::set_allocated_serinfo(::daemon::serverInfo* serinfo
 
 // syncToServerRsp
 
-// required .daemon.daemon_msg_ret ret = 1;
+// required .daemon_name.daemon_msg_ret ret = 1;
 inline bool syncToServerRsp::has_ret() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -2493,11 +2493,11 @@ inline void syncToServerRsp::clear_ret() {
   ret_ = 1;
   clear_has_ret();
 }
-inline ::daemon::daemon_msg_ret syncToServerRsp::ret() const {
-  return static_cast< ::daemon::daemon_msg_ret >(ret_);
+inline ::daemon_name::daemon_msg_ret syncToServerRsp::ret() const {
+  return static_cast< ::daemon_name::daemon_msg_ret >(ret_);
 }
-inline void syncToServerRsp::set_ret(::daemon::daemon_msg_ret value) {
-  assert(::daemon::daemon_msg_ret_IsValid(value));
+inline void syncToServerRsp::set_ret(::daemon_name::daemon_msg_ret value) {
+  assert(::daemon_name::daemon_msg_ret_IsValid(value));
   set_has_ret();
   ret_ = value;
 }
@@ -2506,7 +2506,7 @@ inline void syncToServerRsp::set_ret(::daemon::daemon_msg_ret value) {
 
 // electionMasterReq
 
-// required .daemon.serverInfo serInfo = 1;
+// required .daemon_name.serverInfo serInfo = 1;
 inline bool electionMasterReq::has_serinfo() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -2517,24 +2517,24 @@ inline void electionMasterReq::clear_has_serinfo() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void electionMasterReq::clear_serinfo() {
-  if (serinfo_ != NULL) serinfo_->::daemon::serverInfo::Clear();
+  if (serinfo_ != NULL) serinfo_->::daemon_name::serverInfo::Clear();
   clear_has_serinfo();
 }
-inline const ::daemon::serverInfo& electionMasterReq::serinfo() const {
+inline const ::daemon_name::serverInfo& electionMasterReq::serinfo() const {
   return serinfo_ != NULL ? *serinfo_ : *default_instance_->serinfo_;
 }
-inline ::daemon::serverInfo* electionMasterReq::mutable_serinfo() {
+inline ::daemon_name::serverInfo* electionMasterReq::mutable_serinfo() {
   set_has_serinfo();
-  if (serinfo_ == NULL) serinfo_ = new ::daemon::serverInfo;
+  if (serinfo_ == NULL) serinfo_ = new ::daemon_name::serverInfo;
   return serinfo_;
 }
-inline ::daemon::serverInfo* electionMasterReq::release_serinfo() {
+inline ::daemon_name::serverInfo* electionMasterReq::release_serinfo() {
   clear_has_serinfo();
-  ::daemon::serverInfo* temp = serinfo_;
+  ::daemon_name::serverInfo* temp = serinfo_;
   serinfo_ = NULL;
   return temp;
 }
-inline void electionMasterReq::set_allocated_serinfo(::daemon::serverInfo* serinfo) {
+inline void electionMasterReq::set_allocated_serinfo(::daemon_name::serverInfo* serinfo) {
   delete serinfo_;
   serinfo_ = serinfo;
   if (serinfo) {
@@ -2548,7 +2548,7 @@ inline void electionMasterReq::set_allocated_serinfo(::daemon::serverInfo* serin
 
 // electionMasterRsp
 
-// required .daemon.daemon_msg_ret ret = 1;
+// required .daemon_name.daemon_msg_ret ret = 1;
 inline bool electionMasterRsp::has_ret() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -2562,11 +2562,11 @@ inline void electionMasterRsp::clear_ret() {
   ret_ = 1;
   clear_has_ret();
 }
-inline ::daemon::daemon_msg_ret electionMasterRsp::ret() const {
-  return static_cast< ::daemon::daemon_msg_ret >(ret_);
+inline ::daemon_name::daemon_msg_ret electionMasterRsp::ret() const {
+  return static_cast< ::daemon_name::daemon_msg_ret >(ret_);
 }
-inline void electionMasterRsp::set_ret(::daemon::daemon_msg_ret value) {
-  assert(::daemon::daemon_msg_ret_IsValid(value));
+inline void electionMasterRsp::set_ret(::daemon_name::daemon_msg_ret value) {
+  assert(::daemon_name::daemon_msg_ret_IsValid(value));
   set_has_ret();
   ret_ = value;
 }
@@ -2574,15 +2574,15 @@ inline void electionMasterRsp::set_ret(::daemon::daemon_msg_ret value) {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace daemon
+}  // namespace daemon_name
 
 #ifndef SWIG
 namespace google {
 namespace protobuf {
 
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::daemon::daemon_msg_ret>() {
-  return ::daemon::daemon_msg_ret_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::daemon_name::daemon_msg_ret>() {
+  return ::daemon_name::daemon_msg_ret_descriptor();
 }
 
 }  // namespace google

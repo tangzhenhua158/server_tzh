@@ -1,4 +1,4 @@
-package daemon;
+package daemon_name;
 option cc_generic_services = true;
 option java_outer_classname = "DaemonPro";
 

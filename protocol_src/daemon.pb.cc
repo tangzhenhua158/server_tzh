@@ -2,7 +2,7 @@
 // source: daemon.proto
 
 #define INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION
-#include "daemon.pb.h"
+#include "../protocol_include/daemon.pb.h"
 
 #include <algorithm>
 
@@ -16,7 +16,7 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
-namespace daemon {
+namespace daemon_name {
 
 namespace {
 
@@ -400,34 +400,36 @@ void protobuf_AddDesc_daemon_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\014daemon.proto\022\006daemon\"\\\n\nserverInfo\022\n\n\002"
-    "ip\030\001 \002(\005\022\014\n\004port\030\002 \002(\005\022\022\n\nservername\030\003 \002"
-    "(\t\022\020\n\010serverid\030\004 \002(\003\022\016\n\006extend\030\005 \001(\t\"K\n\013"
-    "registerReq\022\n\n\002ip\030\001 \002(\005\022\014\n\004port\030\002 \002(\005\022\022\n"
-    "\nservername\030\003 \002(\t\022\016\n\006extend\030\004 \001(\t\"X\n\013reg"
-    "isterRsp\022#\n\003ret\030\001 \002(\0162\026.daemon.daemon_ms"
-    "g_ret\022\020\n\010serverid\030\002 \002(\003\022\022\n\nservername\030\003 "
-    "\002(\t\"3\n\013loginOutReq\022\020\n\010serverid\030\001 \002(\003\022\022\n\n"
-    "servername\030\002 \002(\t\"2\n\013loginOutRsp\022#\n\003ret\030\001"
-    " \002(\0162\026.daemon.daemon_msg_ret\"0\n\010heartReq"
-    "\022\020\n\010serverid\030\001 \002(\003\022\022\n\nservername\030\002 \002(\t\"/"
-    "\n\010heartRsp\022#\n\003ret\030\001 \002(\0162\026.daemon.daemon_"
-    "msg_ret\"$\n\016queryServerReq\022\022\n\nservername\030"
-    "\001 \002(\t\"6\n\016queryServerRsp\022$\n\010serInfos\030\001 \003("
-    "\0132\022.daemon.serverInfo\"\026\n\024queryDaemonMast"
-    "erReq\";\n\024queryDaemonMasterRsp\022#\n\007serInfo"
-    "\030\001 \002(\0132\022.daemon.serverInfo\"6\n\017syncToServ"
-    "erReq\022#\n\007serInfo\030\001 \002(\0132\022.daemon.serverIn"
-    "fo\"6\n\017syncToServerRsp\022#\n\003ret\030\001 \002(\0162\026.dae"
-    "mon.daemon_msg_ret\"8\n\021electionMasterReq\022"
-    "#\n\007serInfo\030\001 \002(\0132\022.daemon.serverInfo\"8\n\021"
-    "electionMasterRsp\022#\n\003ret\030\001 \002(\0162\026.daemon."
-    "daemon_msg_ret*;\n\016daemon_msg_ret\022\006\n\002ok\020\001"
-    "\022\010\n\004fail\020\002\022\014\n\010notexist\020\003\022\t\n\005exist\020\0042{\n\rD"
-    "aemonService\0224\n\010Register\022\023.daemon.regist"
-    "erReq\032\023.daemon.registerRsp\0224\n\010LoginOut\022\023"
-    ".daemon.loginOutReq\032\023.daemon.loginOutRsp"
-    "B\016B\tDaemonPro\200\001\001", 1096);
+    "\n\014daemon.proto\022\013daemon_name\"\\\n\nserverInf"
+    "o\022\n\n\002ip\030\001 \002(\005\022\014\n\004port\030\002 \002(\005\022\022\n\nservernam"
+    "e\030\003 \002(\t\022\020\n\010serverid\030\004 \002(\003\022\016\n\006extend\030\005 \001("
+    "\t\"K\n\013registerReq\022\n\n\002ip\030\001 \002(\005\022\014\n\004port\030\002 \002"
+    "(\005\022\022\n\nservername\030\003 \002(\t\022\016\n\006extend\030\004 \001(\t\"]"
+    "\n\013registerRsp\022(\n\003ret\030\001 \002(\0162\033.daemon_name"
+    ".daemon_msg_ret\022\020\n\010serverid\030\002 \002(\003\022\022\n\nser"
+    "vername\030\003 \002(\t\"3\n\013loginOutReq\022\020\n\010serverid"
+    "\030\001 \002(\003\022\022\n\nservername\030\002 \002(\t\"7\n\013loginOutRs"
+    "p\022(\n\003ret\030\001 \002(\0162\033.daemon_name.daemon_msg_"
+    "ret\"0\n\010heartReq\022\020\n\010serverid\030\001 \002(\003\022\022\n\nser"
+    "vername\030\002 \002(\t\"4\n\010heartRsp\022(\n\003ret\030\001 \002(\0162\033"
+    ".daemon_name.daemon_msg_ret\"$\n\016queryServ"
+    "erReq\022\022\n\nservername\030\001 \002(\t\";\n\016queryServer"
+    "Rsp\022)\n\010serInfos\030\001 \003(\0132\027.daemon_name.serv"
+    "erInfo\"\026\n\024queryDaemonMasterReq\"@\n\024queryD"
+    "aemonMasterRsp\022(\n\007serInfo\030\001 \002(\0132\027.daemon"
+    "_name.serverInfo\";\n\017syncToServerReq\022(\n\007s"
+    "erInfo\030\001 \002(\0132\027.daemon_name.serverInfo\";\n"
+    "\017syncToServerRsp\022(\n\003ret\030\001 \002(\0162\033.daemon_n"
+    "ame.daemon_msg_ret\"=\n\021electionMasterReq\022"
+    "(\n\007serInfo\030\001 \002(\0132\027.daemon_name.serverInf"
+    "o\"=\n\021electionMasterRsp\022(\n\003ret\030\001 \002(\0162\033.da"
+    "emon_name.daemon_msg_ret*;\n\016daemon_msg_r"
+    "et\022\006\n\002ok\020\001\022\010\n\004fail\020\002\022\014\n\010notexist\020\003\022\t\n\005ex"
+    "ist\020\0042\217\001\n\rDaemonService\022>\n\010Register\022\030.da"
+    "emon_name.registerReq\032\030.daemon_name.regi"
+    "sterRsp\022>\n\010LoginOut\022\030.daemon_name.loginO"
+    "utReq\032\030.daemon_name.loginOutRspB\016B\tDaemo"
+    "nPro\200\001\001", 1167);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "daemon.proto", &protobuf_RegisterTypes);
   serverInfo::default_instance_ = new serverInfo();
@@ -1335,7 +1337,7 @@ bool registerRsp::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .daemon.daemon_msg_ret ret = 1;
+      // required .daemon_name.daemon_msg_ret ret = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1343,8 +1345,8 @@ bool registerRsp::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          if (::daemon::daemon_msg_ret_IsValid(value)) {
-            set_ret(static_cast< ::daemon::daemon_msg_ret >(value));
+          if (::daemon_name::daemon_msg_ret_IsValid(value)) {
+            set_ret(static_cast< ::daemon_name::daemon_msg_ret >(value));
           } else {
             mutable_unknown_fields()->AddVarint(1, value);
           }
@@ -1406,7 +1408,7 @@ bool registerRsp::MergePartialFromCodedStream(
 
 void registerRsp::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   if (has_ret()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->ret(), output);
@@ -1434,7 +1436,7 @@ void registerRsp::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* registerRsp::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   if (has_ret()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->ret(), target);
@@ -1466,7 +1468,7 @@ int registerRsp::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .daemon.daemon_msg_ret ret = 1;
+    // required .daemon_name.daemon_msg_ret ret = 1;
     if (has_ret()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->ret());
@@ -1900,7 +1902,7 @@ bool loginOutRsp::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .daemon.daemon_msg_ret ret = 1;
+      // required .daemon_name.daemon_msg_ret ret = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1908,8 +1910,8 @@ bool loginOutRsp::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          if (::daemon::daemon_msg_ret_IsValid(value)) {
-            set_ret(static_cast< ::daemon::daemon_msg_ret >(value));
+          if (::daemon_name::daemon_msg_ret_IsValid(value)) {
+            set_ret(static_cast< ::daemon_name::daemon_msg_ret >(value));
           } else {
             mutable_unknown_fields()->AddVarint(1, value);
           }
@@ -1938,7 +1940,7 @@ bool loginOutRsp::MergePartialFromCodedStream(
 
 void loginOutRsp::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   if (has_ret()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->ret(), output);
@@ -1952,7 +1954,7 @@ void loginOutRsp::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* loginOutRsp::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   if (has_ret()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->ret(), target);
@@ -1969,7 +1971,7 @@ int loginOutRsp::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .daemon.daemon_msg_ret ret = 1;
+    // required .daemon_name.daemon_msg_ret ret = 1;
     if (has_ret()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->ret());
@@ -2381,7 +2383,7 @@ bool heartRsp::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .daemon.daemon_msg_ret ret = 1;
+      // required .daemon_name.daemon_msg_ret ret = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -2389,8 +2391,8 @@ bool heartRsp::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          if (::daemon::daemon_msg_ret_IsValid(value)) {
-            set_ret(static_cast< ::daemon::daemon_msg_ret >(value));
+          if (::daemon_name::daemon_msg_ret_IsValid(value)) {
+            set_ret(static_cast< ::daemon_name::daemon_msg_ret >(value));
           } else {
             mutable_unknown_fields()->AddVarint(1, value);
           }
@@ -2419,7 +2421,7 @@ bool heartRsp::MergePartialFromCodedStream(
 
 void heartRsp::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   if (has_ret()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->ret(), output);
@@ -2433,7 +2435,7 @@ void heartRsp::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* heartRsp::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   if (has_ret()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->ret(), target);
@@ -2450,7 +2452,7 @@ int heartRsp::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .daemon.daemon_msg_ret ret = 1;
+    // required .daemon_name.daemon_msg_ret ret = 1;
     if (has_ret()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->ret());
@@ -2819,7 +2821,7 @@ bool queryServerRsp::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .daemon.serverInfo serInfos = 1;
+      // repeated .daemon_name.serverInfo serInfos = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -2852,7 +2854,7 @@ bool queryServerRsp::MergePartialFromCodedStream(
 
 void queryServerRsp::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated .daemon.serverInfo serInfos = 1;
+  // repeated .daemon_name.serverInfo serInfos = 1;
   for (int i = 0; i < this->serinfos_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->serinfos(i), output);
@@ -2866,7 +2868,7 @@ void queryServerRsp::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* queryServerRsp::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated .daemon.serverInfo serInfos = 1;
+  // repeated .daemon_name.serverInfo serInfos = 1;
   for (int i = 0; i < this->serinfos_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -2883,7 +2885,7 @@ void queryServerRsp::SerializeWithCachedSizes(
 int queryServerRsp::ByteSize() const {
   int total_size = 0;
 
-  // repeated .daemon.serverInfo serInfos = 1;
+  // repeated .daemon_name.serverInfo serInfos = 1;
   total_size += 1 * this->serinfos_size();
   for (int i = 0; i < this->serinfos_size(); i++) {
     total_size +=
@@ -3126,7 +3128,7 @@ queryDaemonMasterRsp::queryDaemonMasterRsp()
 }
 
 void queryDaemonMasterRsp::InitAsDefaultInstance() {
-  serinfo_ = const_cast< ::daemon::serverInfo*>(&::daemon::serverInfo::default_instance());
+  serinfo_ = const_cast< ::daemon_name::serverInfo*>(&::daemon_name::serverInfo::default_instance());
 }
 
 queryDaemonMasterRsp::queryDaemonMasterRsp(const queryDaemonMasterRsp& from)
@@ -3175,7 +3177,7 @@ queryDaemonMasterRsp* queryDaemonMasterRsp::New() const {
 void queryDaemonMasterRsp::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_serinfo()) {
-      if (serinfo_ != NULL) serinfo_->::daemon::serverInfo::Clear();
+      if (serinfo_ != NULL) serinfo_->::daemon_name::serverInfo::Clear();
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -3188,7 +3190,7 @@ bool queryDaemonMasterRsp::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .daemon.serverInfo serInfo = 1;
+      // required .daemon_name.serverInfo serInfo = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -3219,7 +3221,7 @@ bool queryDaemonMasterRsp::MergePartialFromCodedStream(
 
 void queryDaemonMasterRsp::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .daemon.serverInfo serInfo = 1;
+  // required .daemon_name.serverInfo serInfo = 1;
   if (has_serinfo()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->serinfo(), output);
@@ -3233,7 +3235,7 @@ void queryDaemonMasterRsp::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* queryDaemonMasterRsp::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .daemon.serverInfo serInfo = 1;
+  // required .daemon_name.serverInfo serInfo = 1;
   if (has_serinfo()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -3251,7 +3253,7 @@ int queryDaemonMasterRsp::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .daemon.serverInfo serInfo = 1;
+    // required .daemon_name.serverInfo serInfo = 1;
     if (has_serinfo()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -3286,7 +3288,7 @@ void queryDaemonMasterRsp::MergeFrom(const queryDaemonMasterRsp& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_serinfo()) {
-      mutable_serinfo()->::daemon::serverInfo::MergeFrom(from.serinfo());
+      mutable_serinfo()->::daemon_name::serverInfo::MergeFrom(from.serinfo());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -3343,7 +3345,7 @@ syncToServerReq::syncToServerReq()
 }
 
 void syncToServerReq::InitAsDefaultInstance() {
-  serinfo_ = const_cast< ::daemon::serverInfo*>(&::daemon::serverInfo::default_instance());
+  serinfo_ = const_cast< ::daemon_name::serverInfo*>(&::daemon_name::serverInfo::default_instance());
 }
 
 syncToServerReq::syncToServerReq(const syncToServerReq& from)
@@ -3392,7 +3394,7 @@ syncToServerReq* syncToServerReq::New() const {
 void syncToServerReq::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_serinfo()) {
-      if (serinfo_ != NULL) serinfo_->::daemon::serverInfo::Clear();
+      if (serinfo_ != NULL) serinfo_->::daemon_name::serverInfo::Clear();
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -3405,7 +3407,7 @@ bool syncToServerReq::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .daemon.serverInfo serInfo = 1;
+      // required .daemon_name.serverInfo serInfo = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -3436,7 +3438,7 @@ bool syncToServerReq::MergePartialFromCodedStream(
 
 void syncToServerReq::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .daemon.serverInfo serInfo = 1;
+  // required .daemon_name.serverInfo serInfo = 1;
   if (has_serinfo()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->serinfo(), output);
@@ -3450,7 +3452,7 @@ void syncToServerReq::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* syncToServerReq::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .daemon.serverInfo serInfo = 1;
+  // required .daemon_name.serverInfo serInfo = 1;
   if (has_serinfo()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -3468,7 +3470,7 @@ int syncToServerReq::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .daemon.serverInfo serInfo = 1;
+    // required .daemon_name.serverInfo serInfo = 1;
     if (has_serinfo()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -3503,7 +3505,7 @@ void syncToServerReq::MergeFrom(const syncToServerReq& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_serinfo()) {
-      mutable_serinfo()->::daemon::serverInfo::MergeFrom(from.serinfo());
+      mutable_serinfo()->::daemon_name::serverInfo::MergeFrom(from.serinfo());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -3618,7 +3620,7 @@ bool syncToServerRsp::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .daemon.daemon_msg_ret ret = 1;
+      // required .daemon_name.daemon_msg_ret ret = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -3626,8 +3628,8 @@ bool syncToServerRsp::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          if (::daemon::daemon_msg_ret_IsValid(value)) {
-            set_ret(static_cast< ::daemon::daemon_msg_ret >(value));
+          if (::daemon_name::daemon_msg_ret_IsValid(value)) {
+            set_ret(static_cast< ::daemon_name::daemon_msg_ret >(value));
           } else {
             mutable_unknown_fields()->AddVarint(1, value);
           }
@@ -3656,7 +3658,7 @@ bool syncToServerRsp::MergePartialFromCodedStream(
 
 void syncToServerRsp::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   if (has_ret()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->ret(), output);
@@ -3670,7 +3672,7 @@ void syncToServerRsp::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* syncToServerRsp::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   if (has_ret()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->ret(), target);
@@ -3687,7 +3689,7 @@ int syncToServerRsp::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .daemon.daemon_msg_ret ret = 1;
+    // required .daemon_name.daemon_msg_ret ret = 1;
     if (has_ret()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->ret());
@@ -3775,7 +3777,7 @@ electionMasterReq::electionMasterReq()
 }
 
 void electionMasterReq::InitAsDefaultInstance() {
-  serinfo_ = const_cast< ::daemon::serverInfo*>(&::daemon::serverInfo::default_instance());
+  serinfo_ = const_cast< ::daemon_name::serverInfo*>(&::daemon_name::serverInfo::default_instance());
 }
 
 electionMasterReq::electionMasterReq(const electionMasterReq& from)
@@ -3824,7 +3826,7 @@ electionMasterReq* electionMasterReq::New() const {
 void electionMasterReq::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_serinfo()) {
-      if (serinfo_ != NULL) serinfo_->::daemon::serverInfo::Clear();
+      if (serinfo_ != NULL) serinfo_->::daemon_name::serverInfo::Clear();
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -3837,7 +3839,7 @@ bool electionMasterReq::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .daemon.serverInfo serInfo = 1;
+      // required .daemon_name.serverInfo serInfo = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -3868,7 +3870,7 @@ bool electionMasterReq::MergePartialFromCodedStream(
 
 void electionMasterReq::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .daemon.serverInfo serInfo = 1;
+  // required .daemon_name.serverInfo serInfo = 1;
   if (has_serinfo()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->serinfo(), output);
@@ -3882,7 +3884,7 @@ void electionMasterReq::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* electionMasterReq::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .daemon.serverInfo serInfo = 1;
+  // required .daemon_name.serverInfo serInfo = 1;
   if (has_serinfo()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -3900,7 +3902,7 @@ int electionMasterReq::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .daemon.serverInfo serInfo = 1;
+    // required .daemon_name.serverInfo serInfo = 1;
     if (has_serinfo()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -3935,7 +3937,7 @@ void electionMasterReq::MergeFrom(const electionMasterReq& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_serinfo()) {
-      mutable_serinfo()->::daemon::serverInfo::MergeFrom(from.serinfo());
+      mutable_serinfo()->::daemon_name::serverInfo::MergeFrom(from.serinfo());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -4050,7 +4052,7 @@ bool electionMasterRsp::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .daemon.daemon_msg_ret ret = 1;
+      // required .daemon_name.daemon_msg_ret ret = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -4058,8 +4060,8 @@ bool electionMasterRsp::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          if (::daemon::daemon_msg_ret_IsValid(value)) {
-            set_ret(static_cast< ::daemon::daemon_msg_ret >(value));
+          if (::daemon_name::daemon_msg_ret_IsValid(value)) {
+            set_ret(static_cast< ::daemon_name::daemon_msg_ret >(value));
           } else {
             mutable_unknown_fields()->AddVarint(1, value);
           }
@@ -4088,7 +4090,7 @@ bool electionMasterRsp::MergePartialFromCodedStream(
 
 void electionMasterRsp::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   if (has_ret()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->ret(), output);
@@ -4102,7 +4104,7 @@ void electionMasterRsp::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* electionMasterRsp::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .daemon.daemon_msg_ret ret = 1;
+  // required .daemon_name.daemon_msg_ret ret = 1;
   if (has_ret()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->ret(), target);
@@ -4119,7 +4121,7 @@ int electionMasterRsp::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .daemon.daemon_msg_ret ret = 1;
+    // required .daemon_name.daemon_msg_ret ret = 1;
     if (has_ret()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->ret());
@@ -4210,16 +4212,16 @@ const ::google::protobuf::ServiceDescriptor* DaemonService::GetDescriptor() {
 }
 
 void DaemonService::Register(::google::protobuf::RpcController* controller,
-                         const ::daemon::registerReq*,
-                         ::daemon::registerRsp*,
+                         const ::daemon_name::registerReq*,
+                         ::daemon_name::registerRsp*,
                          ::google::protobuf::Closure* done) {
   controller->SetFailed("Method Register() not implemented.");
   done->Run();
 }
 
 void DaemonService::LoginOut(::google::protobuf::RpcController* controller,
-                         const ::daemon::loginOutReq*,
-                         ::daemon::loginOutRsp*,
+                         const ::daemon_name::loginOutReq*,
+                         ::daemon_name::loginOutRsp*,
                          ::google::protobuf::Closure* done) {
   controller->SetFailed("Method LoginOut() not implemented.");
   done->Run();
@@ -4234,14 +4236,14 @@ void DaemonService::CallMethod(const ::google::protobuf::MethodDescriptor* metho
   switch(method->index()) {
     case 0:
       Register(controller,
-             ::google::protobuf::down_cast<const ::daemon::registerReq*>(request),
-             ::google::protobuf::down_cast< ::daemon::registerRsp*>(response),
+             ::google::protobuf::down_cast<const ::daemon_name::registerReq*>(request),
+             ::google::protobuf::down_cast< ::daemon_name::registerRsp*>(response),
              done);
       break;
     case 1:
       LoginOut(controller,
-             ::google::protobuf::down_cast<const ::daemon::loginOutReq*>(request),
-             ::google::protobuf::down_cast< ::daemon::loginOutRsp*>(response),
+             ::google::protobuf::down_cast<const ::daemon_name::loginOutReq*>(request),
+             ::google::protobuf::down_cast< ::daemon_name::loginOutRsp*>(response),
              done);
       break;
     default:
@@ -4255,9 +4257,9 @@ const ::google::protobuf::Message& DaemonService::GetRequestPrototype(
   GOOGLE_DCHECK_EQ(method->service(), descriptor());
   switch(method->index()) {
     case 0:
-      return ::daemon::registerReq::default_instance();
+      return ::daemon_name::registerReq::default_instance();
     case 1:
-      return ::daemon::loginOutReq::default_instance();
+      return ::daemon_name::loginOutReq::default_instance();
     default:
       GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
       return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
@@ -4269,9 +4271,9 @@ const ::google::protobuf::Message& DaemonService::GetResponsePrototype(
   GOOGLE_DCHECK_EQ(method->service(), descriptor());
   switch(method->index()) {
     case 0:
-      return ::daemon::registerRsp::default_instance();
+      return ::daemon_name::registerRsp::default_instance();
     case 1:
-      return ::daemon::loginOutRsp::default_instance();
+      return ::daemon_name::loginOutRsp::default_instance();
     default:
       GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
       return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
@@ -4290,15 +4292,15 @@ DaemonService_Stub::~DaemonService_Stub() {
 }
 
 void DaemonService_Stub::Register(::google::protobuf::RpcController* controller,
-                              const ::daemon::registerReq* request,
-                              ::daemon::registerRsp* response,
+                              const ::daemon_name::registerReq* request,
+                              ::daemon_name::registerRsp* response,
                               ::google::protobuf::Closure* done) {
   channel_->CallMethod(descriptor()->method(0),
                        controller, request, response, done);
 }
 void DaemonService_Stub::LoginOut(::google::protobuf::RpcController* controller,
-                              const ::daemon::loginOutReq* request,
-                              ::daemon::loginOutRsp* response,
+                              const ::daemon_name::loginOutReq* request,
+                              ::daemon_name::loginOutRsp* response,
                               ::google::protobuf::Closure* done) {
   channel_->CallMethod(descriptor()->method(1),
                        controller, request, response, done);
@@ -4306,6 +4308,6 @@ void DaemonService_Stub::LoginOut(::google::protobuf::RpcController* controller,
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace daemon
+}  // namespace daemon_name
 
 // @@protoc_insertion_point(global_scope)

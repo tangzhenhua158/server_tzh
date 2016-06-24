@@ -8,19 +8,19 @@
 using namespace muduo;
 using namespace muduo::net;
 
-namespace daemon
+namespace daemon_name
 {
 	class DaemonServiceImpl : public DaemonService
 	{
 	public:
 		virtual void Register(::google::protobuf::RpcController* controller,
-			const ::daemon::registerReq* request,
-			::daemon::registerRsp* response,
+			const ::daemon_name::registerReq* request,
+			::daemon_name::registerRsp* response,
 			::google::protobuf::Closure* done);
 
 		void LoginOut(::google::protobuf::RpcController* controller,
-			const ::daemon::loginOutReq* request,
-			::daemon::loginOutRsp* response,
+			const ::daemon_name::loginOutReq* request,
+			::daemon_name::loginOutRsp* response,
 			::google::protobuf::Closure* done);
 	};
 }
