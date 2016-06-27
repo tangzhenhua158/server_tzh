@@ -7,10 +7,10 @@ void DaemonServiceImpl::Register(::google::protobuf::RpcController* controller,
 	::daemon_name::registerRsp* response,
 	::google::protobuf::Closure* done)
 {
-	LOG_INFO << __FUNCTION__<<"servername:"<<request->servername();
+	LOG_INFO <<"DaemonServiceImpl "<< __FUNCTION__<<"  servername: "<<request->servername();
 	response->set_ret(daemon_name::ok);
 	response->set_serverid(121313);
-	response->set_servername("s");
+	response->set_servername("ssss");
 	done->Run();
 }
 

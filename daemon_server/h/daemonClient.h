@@ -12,6 +12,7 @@
 
 #include <boost/bind.hpp>
 #include <boost/ptr_container/ptr_vector.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include <stdio.h>
 
@@ -31,6 +32,7 @@ public:
 		channel_(new RpcChannel),
 		stub_(get_pointer(channel_))
 	{
+		LOG_INFO <<"DaemonClient "<< __FUNCTION__ << " runing "<< " channel<<"<<channel_.get();
 		client_.setConnectionCallback(
 			boost::bind(&DaemonClient::onConnection, this, _1));
 		client_.setMessageCallback(
@@ -43,16 +45,16 @@ public:
 		client_.connect();
 	}
 
-	void register_server(const daemon_name::registerReq & req, daemon_name::registerRsp & rsp)
+	void register_server(const daemon_name::registerReq & req, daemon_name::registerRsp* rsp)
 	{
-		LOG_INFO << __FUNCTION__;
-		stub_.Register(NULL,&req,&rsp,NewCallback(this, &DaemonClient::_handleRegister, &rsp));
+		LOG_INFO <<"DaemonClient "<< __FUNCTION__;
+		stub_.Register(NULL,&req,rsp,NewCallback(this, &DaemonClient::_handleRegister, rsp));
 	}
 
-	void LoginOut(const daemon_name::loginOutReq & req, daemon_name::loginOutRsp & rsp)
+	void LoginOut(const daemon_name::loginOutReq & req, daemon_name::loginOutRsp * rsp)
 	{
 		LOG_INFO << __FUNCTION__;
-		stub_.LoginOut(NULL,&req,&rsp,NewCallback(this, &DaemonClient::_handleLoginOut, &rsp));
+		stub_.LoginOut(NULL,&req,rsp,NewCallback(this, &DaemonClient::_handleLoginOut, rsp));
 	}
 
 private:

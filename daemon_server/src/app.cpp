@@ -1,6 +1,7 @@
 #include "h/daemonClient.h"
 #include "h/app.h"
 #include "muduo/base/Exception.h"
+#include <boost/shared_ptr.hpp>
 
 using namespace daemon_name;
 
@@ -19,7 +20,7 @@ namespace daemon_name
 		if(m_pDaemonClient.get()) 
 		{
 			daemon_name::loginOutReq  req;
-			daemon_name::loginOutRsp  rsp;
+			daemon_name::loginOutRsp  *rsp = new daemon_name::loginOutRsp;
 			m_pDaemonClient->LoginOut(req,rsp);
 		}
 	}
@@ -42,7 +43,7 @@ namespace daemon_name
 	void App::timer()
 	{
 		//heart
-		printf("%s ,%s",__FUNCTION__,"runing");
+		printf("%s ,%s\n",__FUNCTION__,"runing");
 	}
 
 	void App::init()
@@ -53,9 +54,9 @@ namespace daemon_name
 		req.set_port(433);
 		req.set_servername("testdaemon");
 
-		daemon_name::registerRsp rsp;
+		daemon_name::registerRsp *rsp = new daemon_name::registerRsp;
 		m_pDaemonClient->register_server(req,rsp);
-		printf("%s ,%s",__FUNCTION__,"runing");
+		printf("%s ,%s req:%u ,rsp:%s\n",__FUNCTION__,"runing",req.ip() ,rsp->servername().c_str());
 
 	}
 }
