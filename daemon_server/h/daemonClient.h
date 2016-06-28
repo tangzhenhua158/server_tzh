@@ -13,11 +13,13 @@
 #include <boost/bind.hpp>
 #include <boost/ptr_container/ptr_vector.hpp>
 #include <boost/shared_ptr.hpp>
+#include "h/common.h"
 
 #include <stdio.h>
 
 using namespace muduo;
 using namespace muduo::net;
+
 
 
 namespace daemon_name
@@ -45,6 +47,13 @@ public:
 		client_.connect();
 	}
 
+	void disconnect();
+	{
+		client_.disconnect();
+	}
+
+	void setAppClient(IApp * p){m_AppClient = p;}
+
 	void register_server(const daemon_name::registerReq & req, daemon_name::registerRsp* rsp)
 	{
 		LOG_INFO <<"DaemonClient "<< __FUNCTION__;
@@ -56,6 +65,37 @@ public:
 		LOG_INFO << __FUNCTION__;
 		stub_.LoginOut(NULL,&req,rsp,NewCallback(this, &DaemonClient::_handleLoginOut, rsp));
 	}
+
+	void queryMasterDaemon(const daemon_name::queryDaemonMasterReq & req, daemon_name::queryDaemonMasterRsp * rsp)
+	{
+		LOG_INFO << __FUNCTION__;
+		stub_.queryDaemonMaster(NULL,&req,rsp,NewCallback(this, &DaemonClient::_handleQueryMasterDaemon, rsp));
+	}
+
+	void heart(const daemon_name::heartReq & req, daemon_name::heartRsp * rsp)
+	{
+		LOG_INFO << __FUNCTION__;
+		stub_.heart(NULL,&req,rsp,NewCallback(this, &DaemonClient::_handleHeart, rsp));
+	}
+
+	void queryServer(const daemon_name::queryServerReq & req, daemon_name::queryServerRsp * rsp)
+	{
+		LOG_INFO << __FUNCTION__;
+		stub_.queryServer(NULL,&req,rsp,NewCallback(this, &DaemonClient::_handleQueryServer, rsp));
+	}
+
+	void syncServer(const daemon_name::syncToServerReq & req, daemon_name::syncToServerRsp * rsp)
+	{
+		LOG_INFO << __FUNCTION__;
+		stub_.syncServer(NULL,&req,rsp,NewCallback(this, &DaemonClient::_handleSyncServer, rsp));
+	}
+
+	void election(const daemon_name::electionMasterReq & req, daemon_name::electionMasterRsp * rsp)
+	{
+		LOG_INFO << __FUNCTION__;
+		stub_.syncServer(NULL,&req,rsp,NewCallback(this, &DaemonClient::_handleElection, rsp));
+	}
+
 
 private:
 	void onConnection(const TcpConnectionPtr& conn)
@@ -81,10 +121,49 @@ private:
 		LOG_INFO << "DaemonClient " << this << " finished";
 	}
 
+	void _handleQueryMasterDaemon(daemon_name::queryDaemonMasterRsp* resp)
+	{
+
+		LOG_INFO << "DaemonClient " << this << " finished";
+		if(m_AppClient)
+		{
+			serverPort portInfo;
+			portInfo.ip = resp->serinfo.ip();
+			portInfo.port = resp->serinfo().port();
+			portInfo.servername = resp->serinfo().servername();
+			m_AppClient->notifyMasterDaemon(portInfo);
+		}
+	}
+
+	void _handleHeart(daemon_name::heartRsp* resp)
+	{
+
+		LOG_INFO << "DaemonClient " << this << " finished";
+	}
+
+	void _handleQueryServer(daemon_name::queryServerRsp* resp)
+	{
+
+		LOG_INFO << "DaemonClient " << this << " finished";
+	}
+
+	void _handleSyncServer(daemon_name::syncToServerRsp* resp)
+	{
+
+		LOG_INFO << "DaemonClient " << this << " finished";
+	}
+
+	void _handleElection(daemon_name::electionMasterRsp* resp)
+	{
+
+		LOG_INFO << "DaemonClient " << this << " finished";
+	}
+
 	// EventLoop* loop_;
 	TcpClient client_;
 	RpcChannelPtr channel_;
 	daemon_name::DaemonService::Stub stub_;
+	App * m_AppClient;
 
 };
 }
