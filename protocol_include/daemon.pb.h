@@ -1474,6 +1474,26 @@ class DaemonService : public ::google::protobuf::Service {
                        const ::daemon_name::loginOutReq* request,
                        ::daemon_name::loginOutRsp* response,
                        ::google::protobuf::Closure* done);
+  virtual void heart(::google::protobuf::RpcController* controller,
+                       const ::daemon_name::heartReq* request,
+                       ::daemon_name::loginOutRsp* response,
+                       ::google::protobuf::Closure* done);
+  virtual void queryServer(::google::protobuf::RpcController* controller,
+                       const ::daemon_name::queryServerReq* request,
+                       ::daemon_name::queryServerRsp* response,
+                       ::google::protobuf::Closure* done);
+  virtual void queryDaemonMaster(::google::protobuf::RpcController* controller,
+                       const ::daemon_name::queryDaemonMasterReq* request,
+                       ::daemon_name::queryDaemonMasterRsp* response,
+                       ::google::protobuf::Closure* done);
+  virtual void syncServer(::google::protobuf::RpcController* controller,
+                       const ::daemon_name::syncToServerReq* request,
+                       ::daemon_name::syncToServerRsp* response,
+                       ::google::protobuf::Closure* done);
+  virtual void election(::google::protobuf::RpcController* controller,
+                       const ::daemon_name::electionMasterReq* request,
+                       ::daemon_name::electionMasterReq* response,
+                       ::google::protobuf::Closure* done);
 
   // implements Service ----------------------------------------------
 
@@ -1510,6 +1530,26 @@ class DaemonService_Stub : public DaemonService {
   void LoginOut(::google::protobuf::RpcController* controller,
                        const ::daemon_name::loginOutReq* request,
                        ::daemon_name::loginOutRsp* response,
+                       ::google::protobuf::Closure* done);
+  void heart(::google::protobuf::RpcController* controller,
+                       const ::daemon_name::heartReq* request,
+                       ::daemon_name::loginOutRsp* response,
+                       ::google::protobuf::Closure* done);
+  void queryServer(::google::protobuf::RpcController* controller,
+                       const ::daemon_name::queryServerReq* request,
+                       ::daemon_name::queryServerRsp* response,
+                       ::google::protobuf::Closure* done);
+  void queryDaemonMaster(::google::protobuf::RpcController* controller,
+                       const ::daemon_name::queryDaemonMasterReq* request,
+                       ::daemon_name::queryDaemonMasterRsp* response,
+                       ::google::protobuf::Closure* done);
+  void syncServer(::google::protobuf::RpcController* controller,
+                       const ::daemon_name::syncToServerReq* request,
+                       ::daemon_name::syncToServerRsp* response,
+                       ::google::protobuf::Closure* done);
+  void election(::google::protobuf::RpcController* controller,
+                       const ::daemon_name::electionMasterReq* request,
+                       ::daemon_name::electionMasterReq* response,
                        ::google::protobuf::Closure* done);
  private:
   ::google::protobuf::RpcChannel* channel_;
