@@ -8,6 +8,7 @@ using namespace daemon_name;
 
 int main(int argc ,char *argv[])
 {
+	LOG_INFO <<__FUNCTION__<<" start............";
 	try{
 		EventLoop loop;
 		int port = 8888;
@@ -16,6 +17,7 @@ int main(int argc ,char *argv[])
 		RpcServer server(&loop, listenAddr);
 		server.setThreadNum(1);
 		server.registerService(&impl);
+		LOG_INFO <<__FUNCTION__<<" registerService: "<<impl.GetDescriptor()->name()<<" ";
 		server.start();
 
 		InetAddress serverAddr("127.0.0.1",port);
@@ -29,5 +31,6 @@ int main(int argc ,char *argv[])
 	}catch(...){
 		LOG_INFO <<"except:"<< __FUNCTION__;
 	}
+	LOG_INFO <<__FUNCTION__<<" end............";
 	return 0;
 }

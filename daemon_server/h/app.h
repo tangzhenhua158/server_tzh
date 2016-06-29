@@ -21,7 +21,7 @@ namespace daemon_name
 		App(EventLoop *pLoop,const std::string& servername,const InetAddress & address);
 		~App();
 		void start();
-		void notifyMasterDaemon(const serverPort & portinfo);
+		void recvMasterDaemonRsp(const serverPort & portinfo);
 		void onDaemonConnect();
 		void onMasterDaemonConnect();
 	private:

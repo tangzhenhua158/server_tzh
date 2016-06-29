@@ -57,7 +57,7 @@ public:
 
 	void register_server(const daemon_name::registerReq & req, daemon_name::registerRsp* rsp)
 	{
-		LOG_INFO <<"DaemonClient "<< __FUNCTION__;
+		LOG_INFO << __FUNCTION__<<" methodname:"<<stub_.descriptor()->method(0)->name() <<" servicename:"<<stub_.descriptor()->method(0)->service()->name();
 		stub_.Register(NULL,&req,rsp,NewCallback(this, &DaemonClient::_handleRegister, rsp));
 	}
 
@@ -69,7 +69,7 @@ public:
 
 	void queryMasterDaemon(const daemon_name::queryDaemonMasterReq & req, daemon_name::queryDaemonMasterRsp * rsp)
 	{
-		LOG_INFO << __FUNCTION__;
+		LOG_INFO << __FUNCTION__<<" methodname:"<<stub_.descriptor()->method(4)->name() <<" servicename:"<<stub_.descriptor()->method(4)->service()->name();
 		stub_.queryDaemonMaster(NULL,&req,rsp,NewCallback(this, &DaemonClient::_handleQueryMasterDaemon, rsp));
 	}
 
@@ -134,7 +134,7 @@ private:
 			portInfo.ip = resp->serinfo().ip();
 			portInfo.port = resp->serinfo().port();
 			portInfo.servername = resp->serinfo().servername();
-			m_AppClient->notifyMasterDaemon(portInfo);
+			m_AppClient->recvMasterDaemonRsp(portInfo);
 		}
 	}
 

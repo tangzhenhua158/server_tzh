@@ -102,7 +102,7 @@ namespace daemon_name
 		printf("%s ,%s req:%s \n",__FUNCTION__,"runing",req.servername().c_str());
 	}
 
-	void App::notifyMasterDaemon(const serverPort & portinfo)
+	void App::recvMasterDaemonRsp(const serverPort & portinfo)
 	{
 		LOG_INFO << __FUNCTION__;
 #pragma warning "err operator ="

@@ -24,7 +24,7 @@ class IApp
 {
 public:
 	virtual ~IApp(){}
-	virtual void notifyMasterDaemon(const serverPort & portinfo)=0;
+	virtual void recvMasterDaemonRsp(const serverPort & portinfo)=0;
 };
 
 
