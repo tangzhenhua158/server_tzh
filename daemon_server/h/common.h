@@ -10,9 +10,9 @@ struct serverPort
 {
 	uint32_t ip;
 	uint16_t port;
-	string   servername;
+	std::string   servername;
 
-	operator =(serverPort & portInfo)
+	void operator=(const serverPort & portInfo)
 	{
 		ip = portInfo.ip;
 		port = portInfo.port;
@@ -24,7 +24,7 @@ class IApp
 {
 public:
 	virtual ~IApp(){}
-	void notifyMasterDaemon(const serverPort & portinfo)=0;
+	virtual void notifyMasterDaemon(const serverPort & portinfo)=0;
 };
 
 

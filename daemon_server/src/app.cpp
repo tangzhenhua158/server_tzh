@@ -1,3 +1,7 @@
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
 #include "h/daemonClient.h"
 #include "h/app.h"
 #include "muduo/base/Exception.h"
@@ -7,9 +11,9 @@ using namespace daemon_name;
 
 namespace daemon_name
 {
-	App::App(EventLoop *pLoop,const string& servername,const InetAddress & address):
+	App::App(EventLoop *pLoop,const std::string& servername,const InetAddress & address):
 			m_pDaemonClient( new DaemonClient(pLoop,address)),
-			m_pLoop(pLoop),m_servername(servername);
+			m_pLoop(pLoop),m_servername(servername)
 	{
 		m_pDaemonClient->setAppClient(this);
 	}
@@ -68,31 +72,35 @@ namespace daemon_name
 	serverPort& App::updateMasterDeamon()
 	{
 		daemon_name::queryDaemonMasterReq req;
-		req.set_servername("daemon");
+
 
 		daemon_name::queryDaemonMasterRsp *rsp = new daemon_name::queryDaemonMasterRsp;
 		m_pDaemonClient->queryMasterDaemon(req,rsp);
-		printf("%s ,%s req:%u ,rsp:%s\n",__FUNCTION__,"runing",req.ip() ,rsp->servername().c_str());
+		printf("%s ,%s \n",__FUNCTION__,"runing" );
 	}
 
 	void  App::heart()
 	{
 		daemon_name::heartReq req;
+		req.set_serverid(1);
 		req.set_servername("daemon");
 
 		daemon_name::heartRsp *rsp = new daemon_name::heartRsp;
 		m_pDaemonClient->heart(req,rsp);
-		printf("%s ,%s req:%u ,rsp:%s\n",__FUNCTION__,"runing",req.ip() ,rsp->servername().c_str());
+		printf("%s ,%s req:%s \n",__FUNCTION__,"runing",req.servername().c_str());
 	}
 
 	void App::notifyMasterDaemon(const serverPort & portinfo)
 	{
-		m_DaemonPortInfo  = portinfo;
+#pragma warning "err operator ="
+		m_DaemonPortInfo = portinfo;
 		
 		if(m_pheartDaemonClient.get() && m_pLoop )
 		{
 			m_pheartDaemonClient->disconnect();
-			InetAddress address(Inet_ntoa(portinfo.ip), portinfo.port);
+			in_addr in;
+			in.s_addr = portinfo.ip;
+			InetAddress address(inet_ntoa(in), portinfo.port);
 			m_pheartDaemonClient.reset(new DaemonClient(m_pLoop,address));
 			m_pheartDaemonClient->connect();
 

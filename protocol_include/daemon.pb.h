@@ -1476,7 +1476,7 @@ class DaemonService : public ::google::protobuf::Service {
                        ::google::protobuf::Closure* done);
   virtual void heart(::google::protobuf::RpcController* controller,
                        const ::daemon_name::heartReq* request,
-                       ::daemon_name::loginOutRsp* response,
+                       ::daemon_name::heartRsp* response,
                        ::google::protobuf::Closure* done);
   virtual void queryServer(::google::protobuf::RpcController* controller,
                        const ::daemon_name::queryServerReq* request,
@@ -1492,7 +1492,7 @@ class DaemonService : public ::google::protobuf::Service {
                        ::google::protobuf::Closure* done);
   virtual void election(::google::protobuf::RpcController* controller,
                        const ::daemon_name::electionMasterReq* request,
-                       ::daemon_name::electionMasterReq* response,
+                       ::daemon_name::electionMasterRsp* response,
                        ::google::protobuf::Closure* done);
 
   // implements Service ----------------------------------------------
@@ -1533,7 +1533,7 @@ class DaemonService_Stub : public DaemonService {
                        ::google::protobuf::Closure* done);
   void heart(::google::protobuf::RpcController* controller,
                        const ::daemon_name::heartReq* request,
-                       ::daemon_name::loginOutRsp* response,
+                       ::daemon_name::heartRsp* response,
                        ::google::protobuf::Closure* done);
   void queryServer(::google::protobuf::RpcController* controller,
                        const ::daemon_name::queryServerReq* request,
@@ -1549,7 +1549,7 @@ class DaemonService_Stub : public DaemonService {
                        ::google::protobuf::Closure* done);
   void election(::google::protobuf::RpcController* controller,
                        const ::daemon_name::electionMasterReq* request,
-                       ::daemon_name::electionMasterReq* response,
+                       ::daemon_name::electionMasterRsp* response,
                        ::google::protobuf::Closure* done);
  private:
   ::google::protobuf::RpcChannel* channel_;

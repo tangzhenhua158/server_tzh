@@ -425,20 +425,20 @@ void protobuf_AddDesc_daemon_2eproto() {
     "o\"=\n\021electionMasterRsp\022(\n\003ret\030\001 \002(\0162\033.da"
     "emon_name.daemon_msg_ret*;\n\016daemon_msg_r"
     "et\022\006\n\002ok\020\001\022\010\n\004fail\020\002\022\014\n\010notexist\020\003\022\t\n\005ex"
-    "ist\020\0042\203\004\n\rDaemonService\022>\n\010Register\022\030.da"
+    "ist\020\0042\200\004\n\rDaemonService\022>\n\010Register\022\030.da"
     "emon_name.registerReq\032\030.daemon_name.regi"
     "sterRsp\022>\n\010LoginOut\022\030.daemon_name.loginO"
-    "utReq\032\030.daemon_name.loginOutRsp\0228\n\005heart"
-    "\022\025.daemon_name.heartReq\032\030.daemon_name.lo"
-    "ginOutRsp\022G\n\013queryServer\022\033.daemon_name.q"
-    "ueryServerReq\032\033.daemon_name.queryServerR"
-    "sp\022Y\n\021queryDaemonMaster\022!.daemon_name.qu"
-    "eryDaemonMasterReq\032!.daemon_name.queryDa"
-    "emonMasterRsp\022H\n\nsyncServer\022\034.daemon_nam"
-    "e.syncToServerReq\032\034.daemon_name.syncToSe"
-    "rverRsp\022J\n\010election\022\036.daemon_name.electi"
-    "onMasterReq\032\036.daemon_name.electionMaster"
-    "ReqB\016B\tDaemonPro\200\001\001", 1539);
+    "utReq\032\030.daemon_name.loginOutRsp\0225\n\005heart"
+    "\022\025.daemon_name.heartReq\032\025.daemon_name.he"
+    "artRsp\022G\n\013queryServer\022\033.daemon_name.quer"
+    "yServerReq\032\033.daemon_name.queryServerRsp\022"
+    "Y\n\021queryDaemonMaster\022!.daemon_name.query"
+    "DaemonMasterReq\032!.daemon_name.queryDaemo"
+    "nMasterRsp\022H\n\nsyncServer\022\034.daemon_name.s"
+    "yncToServerReq\032\034.daemon_name.syncToServe"
+    "rRsp\022J\n\010election\022\036.daemon_name.electionM"
+    "asterReq\032\036.daemon_name.electionMasterRsp"
+    "B\016B\tDaemonPro\200\001\001", 1536);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "daemon.proto", &protobuf_RegisterTypes);
   serverInfo::default_instance_ = new serverInfo();
@@ -4238,7 +4238,7 @@ void DaemonService::LoginOut(::google::protobuf::RpcController* controller,
 
 void DaemonService::heart(::google::protobuf::RpcController* controller,
                          const ::daemon_name::heartReq*,
-                         ::daemon_name::loginOutRsp*,
+                         ::daemon_name::heartRsp*,
                          ::google::protobuf::Closure* done) {
   controller->SetFailed("Method heart() not implemented.");
   done->Run();
@@ -4270,7 +4270,7 @@ void DaemonService::syncServer(::google::protobuf::RpcController* controller,
 
 void DaemonService::election(::google::protobuf::RpcController* controller,
                          const ::daemon_name::electionMasterReq*,
-                         ::daemon_name::electionMasterReq*,
+                         ::daemon_name::electionMasterRsp*,
                          ::google::protobuf::Closure* done) {
   controller->SetFailed("Method election() not implemented.");
   done->Run();
@@ -4298,7 +4298,7 @@ void DaemonService::CallMethod(const ::google::protobuf::MethodDescriptor* metho
     case 2:
       heart(controller,
              ::google::protobuf::down_cast<const ::daemon_name::heartReq*>(request),
-             ::google::protobuf::down_cast< ::daemon_name::loginOutRsp*>(response),
+             ::google::protobuf::down_cast< ::daemon_name::heartRsp*>(response),
              done);
       break;
     case 3:
@@ -4322,7 +4322,7 @@ void DaemonService::CallMethod(const ::google::protobuf::MethodDescriptor* metho
     case 6:
       election(controller,
              ::google::protobuf::down_cast<const ::daemon_name::electionMasterReq*>(request),
-             ::google::protobuf::down_cast< ::daemon_name::electionMasterReq*>(response),
+             ::google::protobuf::down_cast< ::daemon_name::electionMasterRsp*>(response),
              done);
       break;
     default:
@@ -4364,7 +4364,7 @@ const ::google::protobuf::Message& DaemonService::GetResponsePrototype(
     case 1:
       return ::daemon_name::loginOutRsp::default_instance();
     case 2:
-      return ::daemon_name::loginOutRsp::default_instance();
+      return ::daemon_name::heartRsp::default_instance();
     case 3:
       return ::daemon_name::queryServerRsp::default_instance();
     case 4:
@@ -4372,7 +4372,7 @@ const ::google::protobuf::Message& DaemonService::GetResponsePrototype(
     case 5:
       return ::daemon_name::syncToServerRsp::default_instance();
     case 6:
-      return ::daemon_name::electionMasterReq::default_instance();
+      return ::daemon_name::electionMasterRsp::default_instance();
     default:
       GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
       return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
@@ -4406,7 +4406,7 @@ void DaemonService_Stub::LoginOut(::google::protobuf::RpcController* controller,
 }
 void DaemonService_Stub::heart(::google::protobuf::RpcController* controller,
                               const ::daemon_name::heartReq* request,
-                              ::daemon_name::loginOutRsp* response,
+                              ::daemon_name::heartRsp* response,
                               ::google::protobuf::Closure* done) {
   channel_->CallMethod(descriptor()->method(2),
                        controller, request, response, done);
@@ -4434,7 +4434,7 @@ void DaemonService_Stub::syncServer(::google::protobuf::RpcController* controlle
 }
 void DaemonService_Stub::election(::google::protobuf::RpcController* controller,
                               const ::daemon_name::electionMasterReq* request,
-                              ::daemon_name::electionMasterReq* response,
+                              ::daemon_name::electionMasterRsp* response,
                               ::google::protobuf::Closure* done) {
   channel_->CallMethod(descriptor()->method(6),
                        controller, request, response, done);

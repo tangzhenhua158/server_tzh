@@ -19,7 +19,7 @@ int main(int argc ,char *argv[])
 		server.start();
 
 		InetAddress serverAddr("127.0.0.1",port);
-		App _app(&loop,serverAddr);
+		App _app(&loop,"daemonserver",serverAddr);
 		_app.start();
 		loop.loop();
 		return 0;

@@ -21,6 +21,7 @@ using namespace muduo;
 using namespace muduo::net;
 
 
+typedef boost::function<void ()> connectCallBack_t;
 
 namespace daemon_name
 {
@@ -47,7 +48,7 @@ public:
 		client_.connect();
 	}
 
-	void disconnect();
+	void disconnect()
 	{
 		client_.disconnect();
 	}
@@ -93,7 +94,7 @@ public:
 	void election(const daemon_name::electionMasterReq & req, daemon_name::electionMasterRsp * rsp)
 	{
 		LOG_INFO << __FUNCTION__;
-		stub_.syncServer(NULL,&req,rsp,NewCallback(this, &DaemonClient::_handleElection, rsp));
+		stub_.election(NULL,&req,rsp,NewCallback(this, &DaemonClient::_handleElection, rsp));
 	}
 
 
@@ -105,6 +106,8 @@ private:
 			//channel_.reset(new RpcChannel(conn));
 			conn->setTcpNoDelay(true);
 			channel_->setConnection(conn);
+
+			if(m_connCallback) m_connCallback();
 		}
 	}
 
@@ -128,7 +131,7 @@ private:
 		if(m_AppClient)
 		{
 			serverPort portInfo;
-			portInfo.ip = resp->serinfo.ip();
+			portInfo.ip = resp->serinfo().ip();
 			portInfo.port = resp->serinfo().port();
 			portInfo.servername = resp->serinfo().servername();
 			m_AppClient->notifyMasterDaemon(portInfo);
@@ -159,11 +162,14 @@ private:
 		LOG_INFO << "DaemonClient " << this << " finished";
 	}
 
+	void setConnectCallback(connectCallBack_t _callback){m_connCallback = _callback;}
+
 	// EventLoop* loop_;
 	TcpClient client_;
 	RpcChannelPtr channel_;
 	daemon_name::DaemonService::Stub stub_;
-	App * m_AppClient;
+	IApp * m_AppClient;
+	connectCallBack_t m_connCallback;
 
 };
 }

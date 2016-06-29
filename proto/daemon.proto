@@ -87,7 +87,7 @@ rpc Register(registerReq) returns (registerRsp);
 
 rpc LoginOut(loginOutReq) returns (loginOutRsp);
 
-rpc heart(heartReq) returns (loginOutRsp);
+rpc heart(heartReq) returns (heartRsp);
 
 rpc queryServer(queryServerReq) returns (queryServerRsp);
 
@@ -95,5 +95,5 @@ rpc queryDaemonMaster(queryDaemonMasterReq) returns (queryDaemonMasterRsp);
 
 rpc syncServer(syncToServerReq) returns (syncToServerRsp);
 
-rpc election(electionMasterReq) returns (electionMasterReq);
+rpc election(electionMasterReq) returns (electionMasterRsp);
 }

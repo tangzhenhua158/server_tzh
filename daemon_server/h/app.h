@@ -18,10 +18,10 @@ namespace daemon_name
 	class App:public IApp
 	{
 	public:
-		App(EventLoop *pLoop,const InetAddress & address);
+		App(EventLoop *pLoop,const std::string& servername,const InetAddress & address);
 		~App();
 		void start();
-		void notifyMasterDaemon(serverPort & portinfo);
+		void notifyMasterDaemon(const serverPort & portinfo);
 	private:
 		void timer();
 		void init();
@@ -36,7 +36,7 @@ namespace daemon_name
 		boost::shared_ptr<DaemonClient> m_pDaemonClient;
 		//ÐÄÌø×¨ÓÃ
 		boost::shared_ptr<DaemonClient> m_pheartDaemonClient;
-		std::string & m_servername;
+		std::string  m_servername;
 		serverPort m_DaemonPortInfo;
 	};
 }
