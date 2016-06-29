@@ -22,6 +22,8 @@ namespace daemon_name
 		~App();
 		void start();
 		void notifyMasterDaemon(const serverPort & portinfo);
+		void onDaemonConnect();
+		void onMasterDaemonConnect();
 	private:
 		void timer();
 		void init();

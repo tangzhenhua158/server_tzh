@@ -22,5 +22,10 @@ namespace daemon_name
 			const ::daemon_name::loginOutReq* request,
 			::daemon_name::loginOutRsp* response,
 			::google::protobuf::Closure* done);
+
+		void queryDaemonMaster(::google::protobuf::RpcController* controller,
+			const ::daemon_name::queryDaemonMasterReq* request,
+			::daemon_name::queryDaemonMasterRsp* response,
+			::google::protobuf::Closure* done);
 	};
 }

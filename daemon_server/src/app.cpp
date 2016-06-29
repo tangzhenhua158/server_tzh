@@ -16,6 +16,7 @@ namespace daemon_name
 			m_pLoop(pLoop),m_servername(servername)
 	{
 		m_pDaemonClient->setAppClient(this);
+		m_pDaemonClient->setConnectCallback(boost::bind(&App::onDaemonConnect,this));
 	}
 
 	App::~App()
@@ -42,6 +43,17 @@ namespace daemon_name
 
 		//×¢²á¶¨Ê±Æ÷
 		m_pLoop->runEvery(1.0,boost::bind(&App::timer,this));
+	}
+
+	void App::onDaemonConnect()
+	{
+		LOG_INFO << __FUNCTION__;
+	}
+
+	void App::onMasterDaemonConnect()
+	{
+		LOG_INFO << __FUNCTION__;
+		register_to_daemonserver();
 	}
 
 	void App::timer()
@@ -92,19 +104,32 @@ namespace daemon_name
 
 	void App::notifyMasterDaemon(const serverPort & portinfo)
 	{
+		LOG_INFO << __FUNCTION__;
 #pragma warning "err operator ="
 		m_DaemonPortInfo = portinfo;
+		//m_DaemonPortInfo = *const_cast<serverPort*>(&portinfo);
+		
+		if(m_pheartDaemonClient.get())
+		{
+			m_pheartDaemonClient->disconnect();
+		}
+
+		{
+			in_addr in;
+			in.s_addr = ntohl(portinfo.ip)	;
+
+			string strip = inet_ntoa(in);
+			short port = ntohs(portinfo.port);
+
+			LOG_INFO << __FUNCTION__<< strip <<" "<< port;
+			InetAddress address(strip,port);
+			m_pheartDaemonClient.reset(new DaemonClient(m_pLoop,address));
+			m_pheartDaemonClient->setConnectCallback(boost::bind(&App::onMasterDaemonConnect,this));
+		}
 		
 		if(m_pheartDaemonClient.get() && m_pLoop )
 		{
-			m_pheartDaemonClient->disconnect();
-			in_addr in;
-			in.s_addr = portinfo.ip;
-			InetAddress address(inet_ntoa(in), portinfo.port);
-			m_pheartDaemonClient.reset(new DaemonClient(m_pLoop,address));
 			m_pheartDaemonClient->connect();
-
-			register_to_daemonserver();
 		}
 	}
 

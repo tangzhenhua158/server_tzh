@@ -1,3 +1,7 @@
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
 #include "h/daemonServer.h"
 
 using namespace daemon_name;
@@ -21,5 +25,19 @@ void DaemonServiceImpl::LoginOut(::google::protobuf::RpcController* controller,
 {
 	LOG_INFO << __FUNCTION__;
 	response->set_ret(daemon_name::ok);
+	done->Run();
+}
+
+void DaemonServiceImpl::queryDaemonMaster(::google::protobuf::RpcController* controller,
+	const ::daemon_name::queryDaemonMasterReq* request,
+	::daemon_name::queryDaemonMasterRsp* response,
+	::google::protobuf::Closure* done)
+{
+	LOG_INFO << __FUNCTION__;
+	::daemon_name::serverInfo *pserinfo = response->mutable_serinfo();
+	pserinfo->set_ip(htonl(inet_addr("127.0.0.1")) );
+	pserinfo->set_port(htons(8888));
+	pserinfo->set_serverid(1234234);
+	pserinfo->set_servername("daemonserver");
 	done->Run();
 }

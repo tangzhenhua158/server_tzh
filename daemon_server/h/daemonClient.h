@@ -97,7 +97,7 @@ public:
 		stub_.election(NULL,&req,rsp,NewCallback(this, &DaemonClient::_handleElection, rsp));
 	}
 
-
+	void setConnectCallback(connectCallBack_t _callback){m_connCallback = _callback;}
 private:
 	void onConnection(const TcpConnectionPtr& conn)
 	{
@@ -115,19 +115,19 @@ private:
 	void _handleRegister(daemon_name::registerRsp* resp)
 	{
 
-		LOG_INFO << "DaemonClient " << this << " finished";
+		LOG_INFO << "DaemonClient " << __FUNCTION__ << " finished";
 	}
 
 	void _handleLoginOut(daemon_name::loginOutRsp* resp)
 	{
 
-		LOG_INFO << "DaemonClient " << this << " finished";
+		LOG_INFO << "DaemonClient " << __FUNCTION__ << " finished";
 	}
 
 	void _handleQueryMasterDaemon(daemon_name::queryDaemonMasterRsp* resp)
 	{
 
-		LOG_INFO << "DaemonClient " << this << " finished";
+		LOG_INFO << "DaemonClient " << __FUNCTION__ << " finished";
 		if(m_AppClient)
 		{
 			serverPort portInfo;
@@ -141,28 +141,27 @@ private:
 	void _handleHeart(daemon_name::heartRsp* resp)
 	{
 
-		LOG_INFO << "DaemonClient " << this << " finished";
+		LOG_INFO << "DaemonClient " << __FUNCTION__ << " finished";
 	}
 
 	void _handleQueryServer(daemon_name::queryServerRsp* resp)
 	{
 
-		LOG_INFO << "DaemonClient " << this << " finished";
+		LOG_INFO << "DaemonClient " << __FUNCTION__ << " finished";
 	}
 
 	void _handleSyncServer(daemon_name::syncToServerRsp* resp)
 	{
 
-		LOG_INFO << "DaemonClient " << this << " finished";
+		LOG_INFO << "DaemonClient " << __FUNCTION__ << " finished";
 	}
 
 	void _handleElection(daemon_name::electionMasterRsp* resp)
 	{
 
-		LOG_INFO << "DaemonClient " << this << " finished";
+		LOG_INFO << "DaemonClient " << __FUNCTION__ << " finished";
 	}
 
-	void setConnectCallback(connectCallBack_t _callback){m_connCallback = _callback;}
 
 	// EventLoop* loop_;
 	TcpClient client_;
