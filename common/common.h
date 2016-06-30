@@ -68,7 +68,7 @@ class IApp
 {
 public:
 	virtual ~IApp(){}
-	virtual void recvMasterDaemonRsp(const serverPort & portinfo)=0;
+	virtual void onQueryMasterDaemonRsp(const serverPort & portinfo)=0;
 };
 
 

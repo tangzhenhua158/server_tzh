@@ -1,5 +1,5 @@
-#ifndef __DAEMON_APP_H__
-#define __DAEMON_APP_H__
+#ifndef __MOBSRV_APP_H__
+#define __MOBSRV_APP_H__
 
 #include <muduo/net/EventLoop.h>
 #include "common.h"
@@ -11,9 +11,9 @@ using namespace muduo::net;
 class DaemonClient;
 //class EventLoop;
 
-namespace daemon_name
+namespace mobsrv
 {
-
+	const std::string servername = "mobsrv";
 	class App:public IApp
 	{
 	public:
@@ -43,5 +43,5 @@ namespace daemon_name
 	};
 }
 
-#endif //__DAEMON_APP_H__
+#endif //__MOBSRV_APP_H__
 

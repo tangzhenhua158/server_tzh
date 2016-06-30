@@ -9,7 +9,7 @@
 
 using namespace daemon_name;
 
-namespace daemon_name
+namespace mobsrv
 {
 	App::App(EventLoop *pLoop,const std::string& servername,const InetAddress & address):
 			m_pDaemonClient( new DaemonClient(pLoop,address)),
@@ -54,7 +54,7 @@ namespace daemon_name
 
 	void App::onMasterDaemonConnect()
 	{
-		LOG_INFO << __FUNCTION__;
+		LOG_INFO << __FUNCTION__<<"..................................";
 		m_conn_state.connect_master_daemon = Client_State_t::CONNECT;
 		register_to_daemonserver();
 	}
@@ -99,8 +99,8 @@ namespace daemon_name
 		//register
 		daemon_name::registerReq req;
 		req.set_ip(inet_addr("127.0.01"));
-		req.set_port(htons(8888));
-		req.set_servername(m_servername);
+		req.set_port(htons(5555));
+		req.set_servername(servername);
 		req.set_extend("master");
 
 		daemon_name::registerRsp *rsp = new daemon_name::registerRsp;
@@ -122,7 +122,7 @@ namespace daemon_name
 
 		daemon_name::heartReq req;
 		req.set_serverid(1);
-		req.set_servername("daemon");
+		req.set_servername(servername);
 		daemon_name::heartRsp *rsp = new daemon_name::heartRsp;
 		m_conn_state.unRecvHeartRspCount++;
 		if(m_conn_state.unRecvHeartRspCount >= 3) 
@@ -131,6 +131,7 @@ namespace daemon_name
 			m_conn_state.connect_daemon = Client_State_t::UNCONNECT;
 			m_conn_state.connect_master_daemon = Client_State_t::UNCONNECT;
 		}
+
 		m_pheartDaemonClient->heart(req,rsp);
 		printf("%s ,%s req:%s \n",__FUNCTION__,"runing",req.servername().c_str());
 	}

@@ -1,10 +1,11 @@
 #include "h/daemonClient.h"
-#include "h/daemonServer.h"
 #include "h/app.h"
 #include "muduo/base/Exception.h"
+#include "h/mobServer.h"
 #include <signal.h>
 
 using namespace daemon_name;
+using namespace mobsrv;
 
 
 int main(int argc ,char *argv[])
@@ -13,17 +14,14 @@ int main(int argc ,char *argv[])
 	try{
 		signal(SIGPIPE, SIG_IGN);
 		EventLoop loop;
-		int port = 8888;
+		int port = 5555;
 		InetAddress listenAddr(static_cast<uint16_t>(port));
-		daemon_name::DaemonServiceImpl impl;
-		RpcServer server(&loop, listenAddr);
-		server.setThreadNum(1);
-		server.registerService(&impl);
-		LOG_INFO <<__FUNCTION__<<" registerService: "<<impl.GetDescriptor()->name()<<" ";
+
+		MobServer server(&loop, listenAddr);
 		server.start();
 
-		InetAddress serverAddr("127.0.0.1",port);
-		App _app(&loop,"daemonserver",serverAddr);
+		InetAddress serverAddr("127.0.0.1",8888);
+		App _app(&loop,servername,serverAddr);
 		_app.start();
 		loop.loop();
 		return 0;

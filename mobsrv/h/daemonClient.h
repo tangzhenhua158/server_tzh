@@ -23,7 +23,7 @@ using namespace muduo::net;
 
 typedef boost::function<void ()> connectCallBack_t;
 
-namespace daemon_name
+namespace mobsrv
 {
 class DaemonClient : boost::noncopyable
 {
