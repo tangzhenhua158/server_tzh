@@ -17,6 +17,7 @@ namespace daemon_name
 	{
 		m_pDaemonClient->setAppClient(this);
 		m_pDaemonClient->setConnectCallback(boost::bind(&App::onDaemonConnect,this));
+		m_pDaemonClient->setClientState(&m_conn_state);
 	}
 
 	App::~App()
@@ -48,23 +49,45 @@ namespace daemon_name
 	void App::onDaemonConnect()
 	{
 		LOG_INFO << __FUNCTION__;
+		m_conn_state.connect_daemon = Client_State_t::CONNECT;
 	}
 
 	void App::onMasterDaemonConnect()
 	{
 		LOG_INFO << __FUNCTION__;
+		m_conn_state.connect_master_daemon = Client_State_t::CONNECT;
 		register_to_daemonserver();
 	}
 
 	void App::timer()
 	{
-		//heart
+		if(m_conn_state.connect_daemon != Client_State_t::CONNECT)
+		{
+			if(!m_pDaemonClient.get()) throw Exception("m_pDaemonClient is null");
+
+			m_pDaemonClient->connect();
+			return;
+		}
+
+		if(m_conn_state.connect_master_daemon != Client_State_t::CONNECT)
+		{
+			updateMasterDeamon();
+			return;
+		}
+
+		if(m_conn_state.regMasterDaemon != Client_State_t::OK)
+		{
+			register_to_daemonserver();
+			return;
+		}
+
+		heart();
+
 		printf("%s ,%s\n",__FUNCTION__,"runing");
 	}
 
 	void App::init()
-	{
-		
+	{	
 		updateMasterDeamon();
 	}
 
@@ -72,9 +95,10 @@ namespace daemon_name
 	{
 		//register
 		daemon_name::registerReq req;
-		req.set_ip(112);
-		req.set_port(433);
+		req.set_ip(inet_addr("127.0.01"));
+		req.set_port(htons(8888));
 		req.set_servername(m_servername);
+		req.set_extend("master");
 
 		daemon_name::registerRsp *rsp = new daemon_name::registerRsp;
 		m_pheartDaemonClient->register_server(req,rsp);
@@ -84,8 +108,6 @@ namespace daemon_name
 	serverPort& App::updateMasterDeamon()
 	{
 		daemon_name::queryDaemonMasterReq req;
-
-
 		daemon_name::queryDaemonMasterRsp *rsp = new daemon_name::queryDaemonMasterRsp;
 		m_pDaemonClient->queryMasterDaemon(req,rsp);
 		printf("%s ,%s \n",__FUNCTION__,"runing" );
@@ -93,12 +115,15 @@ namespace daemon_name
 
 	void  App::heart()
 	{
+		if(!m_pheartDaemonClient.get()) return;
+
 		daemon_name::heartReq req;
 		req.set_serverid(1);
 		req.set_servername("daemon");
-
 		daemon_name::heartRsp *rsp = new daemon_name::heartRsp;
-		m_pDaemonClient->heart(req,rsp);
+		m_conn_state.unRecvHeartRspCount++;
+		if(m_conn_state.unRecvHeartRspCount >= 3) m_conn_state.heart_state = Client_State_t::FAIL;
+		m_pheartDaemonClient->heart(req,rsp);
 		printf("%s ,%s req:%s \n",__FUNCTION__,"runing",req.servername().c_str());
 	}
 
@@ -117,14 +142,22 @@ namespace daemon_name
 		{
 			in_addr in;
 			in.s_addr = ntohl(portinfo.ip)	;
-
 			string strip = inet_ntoa(in);
 			short port = ntohs(portinfo.port);
+
+			if(portinfo.servername.empty())//no daemonserver 
+			{
+				LOG_WARN << __FUNCTION__ << " no daemonserver...................";
+				strip = "127.0.0.1";
+				port = 8888;
+			}
 
 			LOG_INFO << __FUNCTION__<< strip <<" "<< port;
 			InetAddress address(strip,port);
 			m_pheartDaemonClient.reset(new DaemonClient(m_pLoop,address));
+			m_conn_state.connect_master_daemon = Client_State_t::UNCONNECT;
 			m_pheartDaemonClient->setConnectCallback(boost::bind(&App::onMasterDaemonConnect,this));
+			m_pheartDaemonClient->setClientState(&m_conn_state);
 		}
 		
 		if(m_pheartDaemonClient.get() && m_pLoop )
@@ -135,7 +168,6 @@ namespace daemon_name
 
 	serverPort& App::getMasterDeamon()
 	{
-		
 		return m_DaemonPortInfo;
 	}
 }

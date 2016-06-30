@@ -11,10 +11,9 @@ using namespace muduo::net;
 class DaemonClient;
 //class EventLoop;
 
-
-
 namespace daemon_name
 {
+
 	class App:public IApp
 	{
 	public:
@@ -40,6 +39,7 @@ namespace daemon_name
 		boost::shared_ptr<DaemonClient> m_pheartDaemonClient;
 		std::string  m_servername;
 		serverPort m_DaemonPortInfo;
+		Client_State_t  m_conn_state;
 	};
 }
 

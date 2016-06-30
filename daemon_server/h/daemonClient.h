@@ -41,6 +41,7 @@ public:
 		client_.setMessageCallback(
 			boost::bind(&RpcChannel::onMessage, get_pointer(channel_), _1, _2, _3));
 		// client_.enableRetry();
+		m_pClientState = NULL;
 	}
 
 	void connect()
@@ -98,6 +99,8 @@ public:
 	}
 
 	void setConnectCallback(connectCallBack_t _callback){m_connCallback = _callback;}
+
+	void setClientState(Client_State_t * pstate){m_pClientState = pstate;}
 private:
 	void onConnection(const TcpConnectionPtr& conn)
 	{
@@ -114,7 +117,8 @@ private:
 
 	void _handleRegister(daemon_name::registerRsp* resp)
 	{
-
+		assert(m_pClientState != NULL);
+		m_pClientState->regMasterDaemon = Client_State_t::OK;
 		LOG_INFO << "DaemonClient " << __FUNCTION__ << " finished";
 	}
 
@@ -140,7 +144,9 @@ private:
 
 	void _handleHeart(daemon_name::heartRsp* resp)
 	{
-
+		assert(m_pClientState != NULL);
+		m_pClientState->unRecvHeartRspCount = 0;
+		m_pClientState->heart_state = Client_State_t::OK;
 		LOG_INFO << "DaemonClient " << __FUNCTION__ << " finished";
 	}
 
@@ -164,12 +170,12 @@ private:
 
 
 	// EventLoop* loop_;
-	TcpClient client_;
-	RpcChannelPtr channel_;
+	TcpClient					client_;
+	RpcChannelPtr				channel_;
 	daemon_name::DaemonService::Stub stub_;
-	IApp * m_AppClient;
-	connectCallBack_t m_connCallback;
-
+	IApp *						m_AppClient;
+	connectCallBack_t			m_connCallback;
+	Client_State_t *			m_pClientState;
 };
 }
 
