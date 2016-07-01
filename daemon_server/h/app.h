@@ -23,6 +23,7 @@ namespace daemon_name
 		void onQueryMasterDaemonRsp(const serverPort & portinfo);
 		void onDaemonConnect();
 		void onMasterDaemonConnect();
+		void addServerInfo(const std::string & host );
 	private:
 		void timer();
 		void init();

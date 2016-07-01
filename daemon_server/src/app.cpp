@@ -64,8 +64,6 @@ namespace daemon_name
 		if(m_conn_state.connect_daemon != Client_State_t::CONNECT)
 		{
 			if(!m_pDaemonClient.get()) throw Exception("m_pDaemonClient is null");
-
-			m_pDaemonClient->connect();
 			return;
 		}
 
@@ -177,5 +175,11 @@ namespace daemon_name
 	serverPort& App::getMasterDeamon()
 	{
 		return m_DaemonPortInfo;
+	}
+
+	void App::addServerInfo(const std::string & host )
+	{
+		if(m_pDaemonClient.get())
+			m_pDaemonClient->addServerInfo(host);
 	}
 }

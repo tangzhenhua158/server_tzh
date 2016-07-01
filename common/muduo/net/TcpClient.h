@@ -27,6 +27,7 @@ typedef boost::shared_ptr<Connector> ConnectorPtr;
 class TcpClient : boost::noncopyable
 {
  public:
+	 typedef boost::function<void()> EventCallback;
   // TcpClient(EventLoop* loop);
   // TcpClient(EventLoop* loop, const string& host, uint16_t port);
   TcpClient(EventLoop* loop,
@@ -62,6 +63,8 @@ class TcpClient : boost::noncopyable
   /// Not thread safe.
   void setWriteCompleteCallback(const WriteCompleteCallback& cb)
   { writeCompleteCallback_ = cb; }
+
+  void seterrCallback(const EventCallback &cb);
 
 #ifdef __GXX_EXPERIMENTAL_CXX0X__
   void setConnectionCallback(ConnectionCallback&& cb)

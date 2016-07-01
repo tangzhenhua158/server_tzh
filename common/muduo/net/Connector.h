@@ -30,6 +30,7 @@ class Connector : boost::noncopyable,
                   public boost::enable_shared_from_this<Connector>
 {
  public:
+	 typedef boost::function<void()> EventCallback;
   typedef boost::function<void (int sockfd)> NewConnectionCallback;
 
   Connector(EventLoop* loop, const InetAddress& serverAddr);
@@ -37,6 +38,11 @@ class Connector : boost::noncopyable,
 
   void setNewConnectionCallback(const NewConnectionCallback& cb)
   { newConnectionCallback_ = cb; }
+
+  void seterrCallback(const EventCallback &cb)
+  {
+	  m_errCallback = cb;
+  }
 
   void start();  // can be called in any thread
   void restart();  // must be called in loop thread
@@ -66,6 +72,7 @@ class Connector : boost::noncopyable,
   States state_;  // FIXME: use atomic variable
   boost::scoped_ptr<Channel> channel_;
   NewConnectionCallback newConnectionCallback_;
+  EventCallback   m_errCallback;
   int retryDelayMs_;
 };
 

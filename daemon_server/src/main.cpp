@@ -12,6 +12,7 @@ int main(int argc ,char *argv[])
 	LOG_INFO <<__FUNCTION__<<" start............";
 	try{
 		signal(SIGPIPE, SIG_IGN);
+		signal(SIGSEGV, SIG_IGN);
 		EventLoop loop;
 		int port = 8888;
 		InetAddress listenAddr(static_cast<uint16_t>(port));
@@ -22,8 +23,16 @@ int main(int argc ,char *argv[])
 		LOG_INFO <<__FUNCTION__<<" registerService: "<<impl.GetDescriptor()->name()<<" ";
 		server.start();
 
-		InetAddress serverAddr("127.0.0.1",port);
+		std::string ip1 = "daemonserver2.com";
+		std::string ip2 = "daemonserver.com";
+		std::string ip3 = "daemonserver1.com";
+		InetAddress out;
+		InetAddress::resolve(ip1,&out);
+		InetAddress serverAddr(out.toIp(),port);
 		App _app(&loop,servername,serverAddr);
+		_app.addServerInfo(ip1);
+		_app.addServerInfo(ip2);
+		_app.addServerInfo(ip3);
 		_app.start();
 		loop.loop();
 		return 0;
