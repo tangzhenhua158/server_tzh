@@ -119,6 +119,7 @@ private:
 	{
 		assert(m_pClientState != NULL);
 		m_pClientState->regMasterDaemon = Client_State_t::OK;
+		m_pClientState->serverid = resp->serverid();
 		LOG_INFO << "DaemonClient " << __FUNCTION__ << " finished";
 	}
 

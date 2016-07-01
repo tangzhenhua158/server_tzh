@@ -13,7 +13,7 @@ class DaemonClient;
 
 namespace daemon_name
 {
-
+	const std::string servername = "daemonserver";
 	class App:public IApp
 	{
 	public:

@@ -55,10 +55,11 @@ struct Client_State_t
 	uint32_t regMasterDaemon;
 	uint32_t heart_state;
 	uint32_t unRecvHeartRspCount;
+	uint32_t serverid;
 
 	Client_State_t():connect_daemon(UNCONNECT),
 		connect_master_daemon(UNCONNECT),regMasterDaemon(FAIL),
-		unRecvHeartRspCount(0),heart_state(FAIL)
+		unRecvHeartRspCount(0),heart_state(FAIL),serverid(0)
 	{
 
 	}

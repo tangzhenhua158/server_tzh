@@ -121,7 +121,7 @@ namespace mobsrv
 		if(!m_pheartDaemonClient.get()) return;
 
 		daemon_name::heartReq req;
-		req.set_serverid(1);
+		req.set_serverid(m_conn_state.serverid);
 		req.set_servername(servername);
 		daemon_name::heartRsp *rsp = new daemon_name::heartRsp;
 		m_conn_state.unRecvHeartRspCount++;

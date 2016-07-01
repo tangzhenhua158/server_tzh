@@ -83,7 +83,7 @@ void DaemonServiceImpl::heart(::google::protobuf::RpcController* controller,
 	::daemon_name::heartRsp* response,
 	::google::protobuf::Closure* done)
 {
-	LOG_INFO << __FUNCTION__;
+	LOG_INFO << __FUNCTION__<<" servername: "<<request->servername() << " serverid: "<< request->serverid();
 	response->set_ret(daemon_name::ok);
 	done->Run();
 }
