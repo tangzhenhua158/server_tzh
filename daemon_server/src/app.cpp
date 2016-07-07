@@ -18,6 +18,7 @@ namespace daemon_name
 		m_pDaemonClient->setAppClient(this);
 		m_pDaemonClient->setConnectCallback(boost::bind(&App::onDaemonConnect,this));
 		m_pDaemonClient->setClientState(&m_conn_state);
+		m_pDaemonClient->setErrCallback(boost::bind(&App::_handleConnectErr,this));
 	}
 
 	App::~App()
@@ -43,7 +44,7 @@ namespace daemon_name
 		m_pLoop->runAfter(1.0,boost::bind(&App::init,this));
 
 		//×¢²á¶¨Ê±Æ÷
-		m_pLoop->runEvery(1.0,boost::bind(&App::timer,this));
+		m_timerId = m_pLoop->runEvery(1.0,boost::bind(&App::timer,this));
 	}
 
 	void App::onDaemonConnect()
@@ -179,7 +180,33 @@ namespace daemon_name
 
 	void App::addServerInfo(const std::string & host )
 	{
-		if(m_pDaemonClient.get())
-			m_pDaemonClient->addServerInfo(host);
+		m_mapHost.push_back(host);
+	}
+
+	void App::_handleConnectErr()
+	{
+		//rest daemonclient, retry next	
+		static uint32_t errCount = 0 ;
+		if(++errCount > 3) {m_pDaemonClient->stop(); errCount = 0;m_pLoop->cancel(m_timerId);resetDaemonClient();}
+		LOG_WARN << __FUNCTION__ ;
+	}
+
+	void App::resetDaemonClient()
+	{
+		assert(m_mapHost.size() > 0);
+
+		static uint32_t nIndex = 1;
+		std::string host  = m_mapHost[nIndex%m_mapHost.size()];
+
+		InetAddress out;
+		InetAddress::resolve(host,&out);
+		InetAddress address(out.toIp(),daemon_port);
+		m_pDaemonClient.reset(new DaemonClient(m_pLoop,address));
+		m_pDaemonClient->setAppClient(this);
+		m_pDaemonClient->setConnectCallback(boost::bind(&App::onDaemonConnect,this));
+		m_pDaemonClient->setClientState(&m_conn_state);
+		m_pDaemonClient->setErrCallback(boost::bind(&App::_handleConnectErr,this));
+
+		start();
 	}
 }

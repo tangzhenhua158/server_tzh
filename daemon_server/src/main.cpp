@@ -14,8 +14,7 @@ int main(int argc ,char *argv[])
 		signal(SIGPIPE, SIG_IGN);
 		signal(SIGSEGV, SIG_IGN);
 		EventLoop loop;
-		int port = 8888;
-		InetAddress listenAddr(static_cast<uint16_t>(port));
+		InetAddress listenAddr(static_cast<uint16_t>(daemon_port));
 		daemon_name::DaemonServiceImpl impl;
 		RpcServer server(&loop, listenAddr);
 		server.setThreadNum(1);
@@ -28,7 +27,7 @@ int main(int argc ,char *argv[])
 		std::string ip3 = "daemonserver1.com";
 		InetAddress out;
 		InetAddress::resolve(ip1,&out);
-		InetAddress serverAddr(out.toIp(),port);
+		InetAddress serverAddr(out.toIp(),daemon_port);
 		App _app(&loop,servername,serverAddr);
 		_app.addServerInfo(ip1);
 		_app.addServerInfo(ip2);

@@ -14,6 +14,7 @@ class DaemonClient;
 namespace daemon_name
 {
 	const std::string servername = "daemonserver";
+	//const uint32_t daemon_port = 8888;
 	class App:public IApp
 	{
 	public:
@@ -24,6 +25,8 @@ namespace daemon_name
 		void onDaemonConnect();
 		void onMasterDaemonConnect();
 		void addServerInfo(const std::string & host );
+	public:
+		void _handleConnectErr();
 	private:
 		void timer();
 		void init();
@@ -32,6 +35,7 @@ namespace daemon_name
 		serverPort& updateMasterDeamon();
 		serverPort& getMasterDeamon();
 		void heart();
+		void resetDaemonClient();
 	private:
 		EventLoop *m_pLoop;
 		//拉取master跟获取列表
@@ -41,6 +45,8 @@ namespace daemon_name
 		std::string  m_servername;
 		serverPort m_DaemonPortInfo;
 		Client_State_t  m_conn_state;
+		std::vector<std::string >	m_mapHost;
+		TimerId						m_timerId;
 	};
 }
 

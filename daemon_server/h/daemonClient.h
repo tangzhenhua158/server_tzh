@@ -23,6 +23,7 @@ using namespace muduo::net;
 
 
 typedef boost::function<void ()> connectCallBack_t;
+typedef boost::function<void()> eventCallback_t;
 
 namespace daemon_name
 {
@@ -33,28 +34,33 @@ public:
 
 	DaemonClient(EventLoop* loop,
 		const InetAddress& serverAddr)
-	:pTcpClient_(new TcpClient(loop, serverAddr, "DaemonClient")),
+	:TcpClient_(loop, serverAddr, "DaemonClient"),
 		channel_(new RpcChannel),
 		stub_(get_pointer(channel_)),m_pLoop(loop)
 	{
 		LOG_INFO <<"DaemonClient "<< __FUNCTION__ << " runing "<< " channel<<"<<channel_.get();
-		pTcpClient_->setConnectionCallback(
+		TcpClient_.setConnectionCallback(
 			boost::bind(&DaemonClient::onConnection, this, _1));
-		pTcpClient_->setMessageCallback(
+		TcpClient_.setMessageCallback(
 			boost::bind(&RpcChannel::onMessage, get_pointer(channel_), _1, _2, _3));
 		// client_.enableRetry();
 		m_pClientState = NULL;
-		pTcpClient_->seterrCallback(boost::bind(&DaemonClient::_handleConnectErr,this));
+		TcpClient_.seterrCallback(boost::bind(&DaemonClient::_handleConnectErr,this));
 	}
 
 	void connect()
 	{
-		pTcpClient_->connect();
+		TcpClient_.connect();
 	}
 
 	void disconnect()
 	{
-		pTcpClient_->disconnect();
+		TcpClient_.disconnect();
+	}
+
+	void stop()
+	{
+		TcpClient_.stop();
 	}
 
 	void setAppClient(IApp * p){m_AppClient = p;}
@@ -102,12 +108,9 @@ public:
 	}
 
 	void setConnectCallback(connectCallBack_t _callback){m_connCallback = _callback;}
+	void setErrCallback(eventCallback_t _callback){m_errCallback = _callback;}
 
 	void setClientState(Client_State_t * pstate){m_pClientState = pstate;}
-	void addServerInfo(const std::string & host)
-	{
-		m_mapHost.push_back(host);
-	}
 private:
 	void onConnection(const TcpConnectionPtr& conn)
 	{
@@ -179,41 +182,25 @@ private:
 	void _handleConnectErr()
 	{
 		LOG_INFO << "DaemonClient " << __FUNCTION__ << " connect err!!";
-		if( (m_pClientState->connect_daemon != Client_State_t::CONNECT) && pTcpClient_)
+		if( (m_pClientState->connect_daemon != Client_State_t::CONNECT) )
 		{
 			disconnect();
-			delete pTcpClient_;
-
-			static uint32_t connid = 0;
-			++connid;
-			uint32_t serverSize = m_mapHost.size();
-			int index = serverSize>0?connid%serverSize:-1;
-			
-			if(index >= 0)
-			{
-				InetAddress serverAddr(m_mapHost[index],daemon_port);
-				pTcpClient_ = new TcpClient(m_pLoop, serverAddr, "DaemonClient");
-				pTcpClient_->setConnectionCallback(
-					boost::bind(&DaemonClient::onConnection, this, _1));
-				pTcpClient_->setMessageCallback(
-					boost::bind(&RpcChannel::onMessage, get_pointer(channel_), _1, _2, _3));
-				pTcpClient_->seterrCallback(boost::bind(&DaemonClient::_handleConnectErr,this));
-				pTcpClient_->connect();
-			}
-
 		}	
+
+		if(m_errCallback)
+			m_errCallback();
 	}
 
 
 	// EventLoop* loop_;
-	TcpClient					*pTcpClient_;
+	TcpClient					TcpClient_;
 	RpcChannelPtr				channel_;
 	daemon_name::DaemonService::Stub stub_;
 	IApp *						m_AppClient;
 	connectCallBack_t			m_connCallback;
+	eventCallback_t				m_errCallback;
 	Client_State_t *			m_pClientState;
 	EventLoop		*			m_pLoop;
-	std::vector<std::string >	m_mapHost;
 };
 }
 
