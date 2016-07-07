@@ -9,6 +9,8 @@ COMM_LIB += ../lib/libmuduo_protorpc.a  -lprotobuf ../lib/libmuduo_protobuf_code
 INCLUDE := $(INCLUDE)  -I./h/ 
 
 SRC_COMM = src/app.cpp src/daemonServer.cpp src/main.cpp ../protocol_src/daemon.pb.cc  ../protocol_src/rpc.pb.cc
+SRC_COMM += src/serverConfig.cpp
+
 #SRC_CLIENT = src/loginclient.cpp ../protocol_src/login.pb.cc  ../protocol_src/rpc.pb.cc
            
 OBJ_COMM = $(patsubst %.c, %.o, $(SRC_COMM:.cpp=.o))

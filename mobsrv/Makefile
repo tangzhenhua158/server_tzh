@@ -6,7 +6,7 @@ SVC_COMN_LIB_R = -L../lib
 
 COMM_LIB += ../lib/libmuduo_protorpc.a  -lprotobuf ../lib/libmuduo_protobuf_codec_cpp11.a  ../lib/libmuduo_protorpc_wire.a
 
-INCLUDE := $(INCLUDE)  -I./h/ 
+INCLUDE := $(INCLUDE)  -I./h/ -I../thrd/tinyxml/
 
 SRC_COMM = src/app.cpp src/mobServer.cpp src/main.cpp ../protocol_src/daemon.pb.cc  ../protocol_src/rpc.pb.cc
            

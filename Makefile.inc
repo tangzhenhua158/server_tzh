@@ -19,7 +19,7 @@ endif
 
 LIBDIR := $(make_basedir)/lib
 
-COMM_LIB := $(LIBDIR)/libmuduo_net.a  $(LIBDIR)/libmuduo_base.a -lpthread
+COMM_LIB := $(LIBDIR)/libmuduo_net.a  $(LIBDIR)/libmuduo_base.a ../thrd/lib/libtinyxml.a -lpthread
 
 
 # DEF_SELECTOR_THREAD 如果需要每个线程使用自己的selector
@@ -39,6 +39,7 @@ INCLUDE += -I$(make_basedir)/common/muduo/net/
 INCLUDE += -I$(make_basedir)/common/muduo/base/
 INCLUDE += -I../
 INCLUDE += -I../protocol_include/
+INCLUDE += -I../thrd/tinyxml/
 INCLUDE += -I$(BOOST_ROOT)/boost_1_60_0/
 
 #	vim: ft=make
