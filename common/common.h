@@ -26,14 +26,16 @@ struct serverInfo_t
 	uint32_t ip;
 	uint16_t port;
 	std::string   servername;
-	std::string   exd;
+	uint8_t  isMaster;
+	size_t uLastUpdateTime;
 
 	void operator=(const serverInfo_t & server)
 	{
 		ip = server.ip;
 		port = server.port;
 		servername = server.servername;
-		exd = server.exd;
+		isMaster = server.isMaster;
+		uLastUpdateTime = server.uLastUpdateTime;
 	}
 
 	bool operator <(const serverInfo_t & server) const
@@ -46,6 +48,8 @@ struct serverInfo_t
 		return serverid < server.serverid;
 	}*/
 };
+
+typedef boost::shared_ptr<serverInfo_t> pShardServerInfo_t;
 
 struct Client_State_t
 {

@@ -97,10 +97,9 @@ namespace daemon_name
 	{
 		//register
 		daemon_name::registerReq req;
-		req.set_ip(inet_addr("127.0.01"));
+		req.set_ip(inet_addr("127.0.0.1"));
 		req.set_port(htons(8888));
 		req.set_servername(m_servername);
-		req.set_extend("master");
 
 		daemon_name::registerRsp *rsp = new daemon_name::registerRsp;
 		m_pheartDaemonClient->register_server(req,rsp);
@@ -121,7 +120,7 @@ namespace daemon_name
 
 		daemon_name::heartReq req;
 		req.set_serverid(m_conn_state.serverid);
-		req.set_servername(servername);
+		req.set_servername(m_servername);
 		daemon_name::heartRsp *rsp = new daemon_name::heartRsp;
 		m_conn_state.unRecvHeartRspCount++;
 		if(m_conn_state.unRecvHeartRspCount >= 3) 

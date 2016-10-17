@@ -1,6 +1,12 @@
 #ifndef __DAEMON_APP_H__
 #define __DAEMON_APP_H__
 
+/*****************************************************************************
+*daemonclient 包装类
+*app随机连接一台deamon server
+*从该daemon_server中查询master daemon，并向masterdaemon 发送心跳，或者注册
+*从随机的daemonserver获取服务列表
+*****************************************************************************/
 #include <muduo/net/EventLoop.h>
 #include "common.h"
 
@@ -9,12 +15,9 @@ using namespace muduo::net;
 
 
 class DaemonClient;
-//class EventLoop;
 
 namespace daemon_name
 {
-	const std::string servername = "daemonserver";
-	//const uint32_t daemon_port = 8888;
 	class App:public IApp
 	{
 	public:

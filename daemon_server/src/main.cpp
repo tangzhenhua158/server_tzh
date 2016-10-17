@@ -13,8 +13,14 @@ int main(int argc ,char *argv[])
 	try{
 		signal(SIGPIPE, SIG_IGN);
 		signal(SIGSEGV, SIG_IGN);
+
+
+		//////////////////////////////////////////////////////////////////////////
+		//server start
+		const std::string strServerName = "daemonserver";
+		const uint16_t uintPort = 8888;
 		EventLoop loop;
-		InetAddress listenAddr(static_cast<uint16_t>(daemon_port));
+		InetAddress listenAddr(uintPort);
 		daemon_name::DaemonServiceImpl impl;
 		RpcServer server(&loop, listenAddr);
 		server.setThreadNum(1);
@@ -22,13 +28,15 @@ int main(int argc ,char *argv[])
 		LOG_INFO <<__FUNCTION__<<" registerService: "<<impl.GetDescriptor()->name()<<" ";
 		server.start();
 
-		std::string ip1 = "daemonserver2.com";
-		std::string ip2 = "daemonserver.com";
-		std::string ip3 = "daemonserver1.com";
+		//////////////////////////////////////////////////////////////////////////
+		///client 
+		std::string ip1 = "daemonserver.com";
+		std::string ip2 = "daemonserve2.com";
+		std::string ip3 = "daemonserver3.com";
 		InetAddress out;
 		InetAddress::resolve(ip1,&out);
-		InetAddress serverAddr(out.toIp(),daemon_port);
-		App _app(&loop,servername,serverAddr);
+		InetAddress serverAddr(out.toIp(),uintPort);
+		App _app(&loop,strServerName,serverAddr);
 		_app.addServerInfo(ip1);
 		_app.addServerInfo(ip2);
 		_app.addServerInfo(ip3);

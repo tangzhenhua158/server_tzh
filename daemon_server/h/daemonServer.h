@@ -36,9 +36,14 @@ namespace daemon_name
 			const ::daemon_name::heartReq* request,
 			::daemon_name::heartRsp* response,
 			::google::protobuf::Closure* done);
+
+		void queryServer(::google::protobuf::RpcController* controller, 
+			const ::daemon_name::queryServerReq* request,
+			::daemon_name::queryServerRsp* response,
+			::google::protobuf::Closure* done);
 	private:
-		std::map<std::string,std::set<serverInfo_t> >m_nameServers;
-		std::map<uint32_t,serverInfo_t > m_allServers;
+		std::map<std::string,std::set<pShardServerInfo_t> >m_nameServers;
+		std::map<uint64_t,pShardServerInfo_t > m_allServers;
 		AtomicInt32 id_;
 	};
 }
