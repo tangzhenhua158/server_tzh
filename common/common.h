@@ -6,6 +6,11 @@
 using namespace muduo;
 using namespace muduo::net;
 
+#if !defined(__foreach) && !defined(__const_iterator_def)
+#define __const_iterator_def(Iterator, Initializer) __typeof(Initializer) Iterator=(Initializer)
+#define __foreach(Iterator,Container) for(__const_iterator_def(Iterator,(Container).begin()); Iterator!=(Container).end(); ++Iterator)
+#endif
+
 struct serverPort
 {
 	uint32_t ip;

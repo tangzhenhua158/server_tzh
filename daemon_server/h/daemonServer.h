@@ -41,9 +41,26 @@ namespace daemon_name
 			const ::daemon_name::queryServerReq* request,
 			::daemon_name::queryServerRsp* response,
 			::google::protobuf::Closure* done);
+
+		virtual void syncServer(::google::protobuf::RpcController* controller,
+			const ::daemon_name::syncToServerReq* request,
+			::daemon_name::syncToServerRsp* response,
+			::google::protobuf::Closure* done);
+
+		virtual void election(::google::protobuf::RpcController* controller,
+			const ::daemon_name::electionMasterReq* request,
+			::daemon_name::electionMasterRsp* response,
+			::google::protobuf::Closure* done);
+
+		void timeCheck();
+		void checkTimeoutServer();
+
 	private:
 		std::map<std::string,std::set<pShardServerInfo_t> >m_nameServers;
 		std::map<uint64_t,pShardServerInfo_t > m_allServers;
+		std::vector<serverInfo_t>	m_addServers;
+		std::vector<serverInfo_t>	m_delServers;
 		AtomicInt32 id_;
+		serverInfo_t				m_serverInfo;
 	};
 }

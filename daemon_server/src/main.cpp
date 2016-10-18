@@ -27,6 +27,7 @@ int main(int argc ,char *argv[])
 		server.registerService(&impl);
 		LOG_INFO <<__FUNCTION__<<" registerService: "<<impl.GetDescriptor()->name()<<" ";
 		server.start();
+		loop.runEvery(1.0,boost::bind(&daemon_name::DaemonServiceImpl::timeCheck,&impl));
 
 		//////////////////////////////////////////////////////////////////////////
 		///client 

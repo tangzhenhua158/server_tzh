@@ -29,6 +29,8 @@ void DaemonServiceImpl::Register(::google::protobuf::RpcController* controller,
 	if( (m_nameServers.find(pServer->servername) == m_nameServers.end()) && (pServer->servername == "daemonserver")) pServer->isMaster = 1;
 	m_nameServers[pServer->servername].insert(pServer);
 	m_allServers[pServer->serverid] = pServer;
+
+	m_addServers.push_back(*pServer.get());
 	done->Run();
 }
 
@@ -55,6 +57,7 @@ void DaemonServiceImpl::LoginOut(::google::protobuf::RpcController* controller,
 					++it2;
 			}
 		}
+		m_delServers.push_back(*it->second.get());
 		m_allServers.erase(it);
 	}
 
@@ -135,9 +138,120 @@ void DaemonServiceImpl::queryServer(::google::protobuf::RpcController* controlle
 			pserinfo->set_port((*itt)->port);
 			pserinfo->set_serverid((*itt)->serverid);
 			pserinfo->set_servername((*itt)->servername);
-		}
-
-		
+		}	
 	}
+	
+}
+
+void DaemonServiceImpl::syncServer(::google::protobuf::RpcController* controller,
+	const ::daemon_name::syncToServerReq* request,
+	::daemon_name::syncToServerRsp* response,
+	::google::protobuf::Closure* done)
+{
+	//更新数据
+
+	LOG_INFO <<"DaemonServiceImpl "<< __FUNCTION__<<"  servername: "<<request->serinfo().servername();
+
+	if(request->serinfo().extend() == "add")
+	{
+		pShardServerInfo_t pServer(new serverInfo_t);
+		pServer->ip = request->serinfo().ip();
+		pServer->port = (uint16_t)request->serinfo().port();
+		pServer->servername = request->serinfo().servername();
+		pServer->serverid = request->serinfo().serverid();
+		pServer->uLastUpdateTime = time(0);
+	
+		//master没法同步过来，需增加字段
+		m_nameServers[pServer->servername].insert(pServer);
+		m_allServers[pServer->serverid] = pServer;
+
+		m_addServers.push_back(*pServer.get());
+	}
+
+	if(request->serinfo().extend() == "del")
+	{
+		std::map<uint64_t,pShardServerInfo_t >::iterator it =  m_allServers.find(request->serinfo().serverid());
+		if(it != m_allServers.end())
+		{
+			std::map<std::string,std::set<pShardServerInfo_t> >::iterator itt = m_nameServers.find((it->second)->servername);
+			if(itt != m_nameServers.end())
+			{
+				std::set<pShardServerInfo_t>::iterator it2 = itt->second.begin();
+				for(;it2 != itt->second.end(); )
+				{
+					if(it->second->serverid == (*it2)->serverid)
+						itt->second.erase(it2++);
+					else
+						++it2;
+				}
+			}
+			m_allServers.erase(it);
+		}
+	}
+	response->set_ret(daemon_name::ok);
+	done->Run();
+}
+
+void DaemonServiceImpl::election(::google::protobuf::RpcController* controller,
+	const ::daemon_name::electionMasterReq* request,
+	::daemon_name::electionMasterRsp* response,
+	::google::protobuf::Closure* done)
+{
+	//暂不实现
+}
+
+void DaemonServiceImpl::timeCheck()
+{
+	if(m_serverInfo.isMaster)
+	{
+		//master执行 ，由定时器执行此方法更新到其他daemon服务
+		//std::vector<serverInfo_t>	m_addServers;
+		//std::vector<serverInfo_t>	m_delServers;
+
+		//过期的
+		//checkTimeoutServer
+		//syncServer();
+	}
+}
+
+bool IsDelAll(const std::pair<uint64_t,pShardServerInfo_t > & info )
+{
+	return info.second->uLastUpdateTime > 60;
+}
+
+void DaemonServiceImpl::checkTimeoutServer()
+{
+	__foreach(it,m_allServers)
+	{
+		if ( (it->second)->uLastUpdateTime > 60)
+		{
+			m_delServers.push_back(*it->second);
+		}	
+	}
+
+	//remove
+	std::map<uint64_t,pShardServerInfo_t > tempAllServers;
+	std::remove_copy_if(m_allServers.begin(),m_allServers.end(),std::inserter(tempAllServers,tempAllServers.begin()),IsDelAll);
+	m_allServers.swap(tempAllServers);
+
+	__foreach(itt,m_delServers)
+	{
+		std::map<std::string,std::set<pShardServerInfo_t> >::iterator it1 = m_nameServers.find( (*itt).servername);
+		if(it1 != m_nameServers.end())
+		{
+			std::set<pShardServerInfo_t>::iterator it2 = it1->second.begin();
+			for(;it2 != it1->second.end();)
+			{
+				if( (*it2)->serverid == (*itt).serverid )
+				{
+					it1->second.erase(it2++);
+				}else
+				{
+					++it2;
+				}
+			}
+		}
+	}
+	
 	
 }
