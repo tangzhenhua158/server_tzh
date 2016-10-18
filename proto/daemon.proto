@@ -15,7 +15,7 @@ message serverInfo{
 	required int32 port = 2;
 	required string servername = 3;
 	required int64 serverid = 4;
-	optional string extend = 5;
+	optional int32 ismaster = 5;
 }
 
 message registerReq{
@@ -67,6 +67,7 @@ message queryDaemonMasterRsp{
 
 message syncToServerReq{
 	required serverInfo serInfo = 1;
+	required int32 opt = 2;
 }
 
 message syncToServerRsp{

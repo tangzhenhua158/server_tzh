@@ -152,7 +152,7 @@ void DaemonServiceImpl::syncServer(::google::protobuf::RpcController* controller
 
 	LOG_INFO <<"DaemonServiceImpl "<< __FUNCTION__<<"  servername: "<<request->serinfo().servername();
 
-	if(request->serinfo().extend() == "add")
+	if(request->opt() == 1)
 	{
 		pShardServerInfo_t pServer(new serverInfo_t);
 		pServer->ip = request->serinfo().ip();
@@ -168,7 +168,7 @@ void DaemonServiceImpl::syncServer(::google::protobuf::RpcController* controller
 		m_addServers.push_back(*pServer.get());
 	}
 
-	if(request->serinfo().extend() == "del")
+	if(request->opt() == 2)
 	{
 		std::map<uint64_t,pShardServerInfo_t >::iterator it =  m_allServers.find(request->serinfo().serverid());
 		if(it != m_allServers.end())

@@ -83,7 +83,7 @@ void protobuf_AssignDesc_daemon_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(serverInfo, port_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(serverInfo, servername_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(serverInfo, serverid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(serverInfo, extend_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(serverInfo, ismaster_),
   };
   serverInfo_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -253,8 +253,9 @@ void protobuf_AssignDesc_daemon_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(queryDaemonMasterRsp));
   syncToServerReq_descriptor_ = file->message_type(11);
-  static const int syncToServerReq_offsets_[1] = {
+  static const int syncToServerReq_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(syncToServerReq, serinfo_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(syncToServerReq, opt_),
   };
   syncToServerReq_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -400,45 +401,45 @@ void protobuf_AddDesc_daemon_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\014daemon.proto\022\013daemon_name\"\\\n\nserverInf"
+    "\n\014daemon.proto\022\013daemon_name\"^\n\nserverInf"
     "o\022\n\n\002ip\030\001 \002(\005\022\014\n\004port\030\002 \002(\005\022\022\n\nservernam"
-    "e\030\003 \002(\t\022\020\n\010serverid\030\004 \002(\003\022\016\n\006extend\030\005 \001("
-    "\t\"K\n\013registerReq\022\n\n\002ip\030\001 \002(\005\022\014\n\004port\030\002 \002"
-    "(\005\022\022\n\nservername\030\003 \002(\t\022\016\n\006extend\030\004 \001(\t\"]"
-    "\n\013registerRsp\022(\n\003ret\030\001 \002(\0162\033.daemon_name"
-    ".daemon_msg_ret\022\020\n\010serverid\030\002 \002(\003\022\022\n\nser"
-    "vername\030\003 \002(\t\"3\n\013loginOutReq\022\020\n\010serverid"
-    "\030\001 \002(\003\022\022\n\nservername\030\002 \002(\t\"7\n\013loginOutRs"
-    "p\022(\n\003ret\030\001 \002(\0162\033.daemon_name.daemon_msg_"
-    "ret\"0\n\010heartReq\022\020\n\010serverid\030\001 \002(\003\022\022\n\nser"
-    "vername\030\002 \002(\t\"4\n\010heartRsp\022(\n\003ret\030\001 \002(\0162\033"
-    ".daemon_name.daemon_msg_ret\"$\n\016queryServ"
-    "erReq\022\022\n\nservername\030\001 \002(\t\";\n\016queryServer"
-    "Rsp\022)\n\010serInfos\030\001 \003(\0132\027.daemon_name.serv"
-    "erInfo\"\026\n\024queryDaemonMasterReq\"@\n\024queryD"
-    "aemonMasterRsp\022(\n\007serInfo\030\001 \002(\0132\027.daemon"
-    "_name.serverInfo\";\n\017syncToServerReq\022(\n\007s"
-    "erInfo\030\001 \002(\0132\027.daemon_name.serverInfo\";\n"
-    "\017syncToServerRsp\022(\n\003ret\030\001 \002(\0162\033.daemon_n"
-    "ame.daemon_msg_ret\"=\n\021electionMasterReq\022"
-    "(\n\007serInfo\030\001 \002(\0132\027.daemon_name.serverInf"
-    "o\"=\n\021electionMasterRsp\022(\n\003ret\030\001 \002(\0162\033.da"
-    "emon_name.daemon_msg_ret*;\n\016daemon_msg_r"
-    "et\022\006\n\002ok\020\001\022\010\n\004fail\020\002\022\014\n\010notexist\020\003\022\t\n\005ex"
-    "ist\020\0042\200\004\n\rDaemonService\022>\n\010Register\022\030.da"
-    "emon_name.registerReq\032\030.daemon_name.regi"
-    "sterRsp\022>\n\010LoginOut\022\030.daemon_name.loginO"
-    "utReq\032\030.daemon_name.loginOutRsp\0225\n\005heart"
-    "\022\025.daemon_name.heartReq\032\025.daemon_name.he"
-    "artRsp\022G\n\013queryServer\022\033.daemon_name.quer"
-    "yServerReq\032\033.daemon_name.queryServerRsp\022"
-    "Y\n\021queryDaemonMaster\022!.daemon_name.query"
-    "DaemonMasterReq\032!.daemon_name.queryDaemo"
-    "nMasterRsp\022H\n\nsyncServer\022\034.daemon_name.s"
-    "yncToServerReq\032\034.daemon_name.syncToServe"
-    "rRsp\022J\n\010election\022\036.daemon_name.electionM"
-    "asterReq\032\036.daemon_name.electionMasterRsp"
-    "B\016B\tDaemonPro\200\001\001", 1536);
+    "e\030\003 \002(\t\022\020\n\010serverid\030\004 \002(\003\022\020\n\010ismaster\030\005 "
+    "\001(\005\"K\n\013registerReq\022\n\n\002ip\030\001 \002(\005\022\014\n\004port\030\002"
+    " \002(\005\022\022\n\nservername\030\003 \002(\t\022\016\n\006extend\030\004 \001(\t"
+    "\"]\n\013registerRsp\022(\n\003ret\030\001 \002(\0162\033.daemon_na"
+    "me.daemon_msg_ret\022\020\n\010serverid\030\002 \002(\003\022\022\n\ns"
+    "ervername\030\003 \002(\t\"3\n\013loginOutReq\022\020\n\010server"
+    "id\030\001 \002(\003\022\022\n\nservername\030\002 \002(\t\"7\n\013loginOut"
+    "Rsp\022(\n\003ret\030\001 \002(\0162\033.daemon_name.daemon_ms"
+    "g_ret\"0\n\010heartReq\022\020\n\010serverid\030\001 \002(\003\022\022\n\ns"
+    "ervername\030\002 \002(\t\"4\n\010heartRsp\022(\n\003ret\030\001 \002(\016"
+    "2\033.daemon_name.daemon_msg_ret\"$\n\016querySe"
+    "rverReq\022\022\n\nservername\030\001 \002(\t\";\n\016queryServ"
+    "erRsp\022)\n\010serInfos\030\001 \003(\0132\027.daemon_name.se"
+    "rverInfo\"\026\n\024queryDaemonMasterReq\"@\n\024quer"
+    "yDaemonMasterRsp\022(\n\007serInfo\030\001 \002(\0132\027.daem"
+    "on_name.serverInfo\"H\n\017syncToServerReq\022(\n"
+    "\007serInfo\030\001 \002(\0132\027.daemon_name.serverInfo\022"
+    "\013\n\003opt\030\002 \002(\005\";\n\017syncToServerRsp\022(\n\003ret\030\001"
+    " \002(\0162\033.daemon_name.daemon_msg_ret\"=\n\021ele"
+    "ctionMasterReq\022(\n\007serInfo\030\001 \002(\0132\027.daemon"
+    "_name.serverInfo\"=\n\021electionMasterRsp\022(\n"
+    "\003ret\030\001 \002(\0162\033.daemon_name.daemon_msg_ret*"
+    ";\n\016daemon_msg_ret\022\006\n\002ok\020\001\022\010\n\004fail\020\002\022\014\n\010n"
+    "otexist\020\003\022\t\n\005exist\020\0042\200\004\n\rDaemonService\022>"
+    "\n\010Register\022\030.daemon_name.registerReq\032\030.d"
+    "aemon_name.registerRsp\022>\n\010LoginOut\022\030.dae"
+    "mon_name.loginOutReq\032\030.daemon_name.login"
+    "OutRsp\0225\n\005heart\022\025.daemon_name.heartReq\032\025"
+    ".daemon_name.heartRsp\022G\n\013queryServer\022\033.d"
+    "aemon_name.queryServerReq\032\033.daemon_name."
+    "queryServerRsp\022Y\n\021queryDaemonMaster\022!.da"
+    "emon_name.queryDaemonMasterReq\032!.daemon_"
+    "name.queryDaemonMasterRsp\022H\n\nsyncServer\022"
+    "\034.daemon_name.syncToServerReq\032\034.daemon_n"
+    "ame.syncToServerRsp\022J\n\010election\022\036.daemon"
+    "_name.electionMasterReq\032\036.daemon_name.el"
+    "ectionMasterRspB\016B\tDaemonPro\200\001\001", 1551);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "daemon.proto", &protobuf_RegisterTypes);
   serverInfo::default_instance_ = new serverInfo();
@@ -504,7 +505,7 @@ const int serverInfo::kIpFieldNumber;
 const int serverInfo::kPortFieldNumber;
 const int serverInfo::kServernameFieldNumber;
 const int serverInfo::kServeridFieldNumber;
-const int serverInfo::kExtendFieldNumber;
+const int serverInfo::kIsmasterFieldNumber;
 #endif  // !_MSC_VER
 
 serverInfo::serverInfo()
@@ -527,7 +528,7 @@ void serverInfo::SharedCtor() {
   port_ = 0;
   servername_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   serverid_ = GOOGLE_LONGLONG(0);
-  extend_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  ismaster_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -538,9 +539,6 @@ serverInfo::~serverInfo() {
 void serverInfo::SharedDtor() {
   if (servername_ != &::google::protobuf::internal::kEmptyString) {
     delete servername_;
-  }
-  if (extend_ != &::google::protobuf::internal::kEmptyString) {
-    delete extend_;
   }
   if (this != default_instance_) {
   }
@@ -577,11 +575,7 @@ void serverInfo::Clear() {
       }
     }
     serverid_ = GOOGLE_LONGLONG(0);
-    if (has_extend()) {
-      if (extend_ != &::google::protobuf::internal::kEmptyString) {
-        extend_->clear();
-      }
-    }
+    ismaster_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -653,20 +647,19 @@ bool serverInfo::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(42)) goto parse_extend;
+        if (input->ExpectTag(40)) goto parse_ismaster;
         break;
       }
 
-      // optional string extend = 5;
+      // optional int32 ismaster = 5;
       case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-         parse_extend:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_extend()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-            this->extend().data(), this->extend().length(),
-            ::google::protobuf::internal::WireFormat::PARSE);
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_ismaster:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &ismaster_)));
+          set_has_ismaster();
         } else {
           goto handle_uninterpreted;
         }
@@ -716,13 +709,9 @@ void serverInfo::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->serverid(), output);
   }
 
-  // optional string extend = 5;
-  if (has_extend()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->extend().data(), this->extend().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      5, this->extend(), output);
+  // optional int32 ismaster = 5;
+  if (has_ismaster()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->ismaster(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -758,14 +747,9 @@ void serverInfo::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->serverid(), target);
   }
 
-  // optional string extend = 5;
-  if (has_extend()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->extend().data(), this->extend().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->extend(), target);
+  // optional int32 ismaster = 5;
+  if (has_ismaster()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->ismaster(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -807,11 +791,11 @@ int serverInfo::ByteSize() const {
           this->serverid());
     }
 
-    // optional string extend = 5;
-    if (has_extend()) {
+    // optional int32 ismaster = 5;
+    if (has_ismaster()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->extend());
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->ismaster());
     }
 
   }
@@ -853,8 +837,8 @@ void serverInfo::MergeFrom(const serverInfo& from) {
     if (from.has_serverid()) {
       set_serverid(from.serverid());
     }
-    if (from.has_extend()) {
-      set_extend(from.extend());
+    if (from.has_ismaster()) {
+      set_ismaster(from.ismaster());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -884,7 +868,7 @@ void serverInfo::Swap(serverInfo* other) {
     std::swap(port_, other->port_);
     std::swap(servername_, other->servername_);
     std::swap(serverid_, other->serverid_);
-    std::swap(extend_, other->extend_);
+    std::swap(ismaster_, other->ismaster_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -3346,6 +3330,7 @@ void queryDaemonMasterRsp::Swap(queryDaemonMasterRsp* other) {
 
 #ifndef _MSC_VER
 const int syncToServerReq::kSerInfoFieldNumber;
+const int syncToServerReq::kOptFieldNumber;
 #endif  // !_MSC_VER
 
 syncToServerReq::syncToServerReq()
@@ -3366,6 +3351,7 @@ syncToServerReq::syncToServerReq(const syncToServerReq& from)
 void syncToServerReq::SharedCtor() {
   _cached_size_ = 0;
   serinfo_ = NULL;
+  opt_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -3405,6 +3391,7 @@ void syncToServerReq::Clear() {
     if (has_serinfo()) {
       if (serinfo_ != NULL) serinfo_->::daemon_name::serverInfo::Clear();
     }
+    opt_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -3422,6 +3409,22 @@ bool syncToServerReq::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_serinfo()));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(16)) goto parse_opt;
+        break;
+      }
+
+      // required int32 opt = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_opt:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &opt_)));
+          set_has_opt();
         } else {
           goto handle_uninterpreted;
         }
@@ -3453,6 +3456,11 @@ void syncToServerReq::SerializeWithCachedSizes(
       1, this->serinfo(), output);
   }
 
+  // required int32 opt = 2;
+  if (has_opt()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->opt(), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -3466,6 +3474,11 @@ void syncToServerReq::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         1, this->serinfo(), target);
+  }
+
+  // required int32 opt = 2;
+  if (has_opt()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->opt(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -3484,6 +3497,13 @@ int syncToServerReq::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           this->serinfo());
+    }
+
+    // required int32 opt = 2;
+    if (has_opt()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->opt());
     }
 
   }
@@ -3516,6 +3536,9 @@ void syncToServerReq::MergeFrom(const syncToServerReq& from) {
     if (from.has_serinfo()) {
       mutable_serinfo()->::daemon_name::serverInfo::MergeFrom(from.serinfo());
     }
+    if (from.has_opt()) {
+      set_opt(from.opt());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -3533,7 +3556,7 @@ void syncToServerReq::CopyFrom(const syncToServerReq& from) {
 }
 
 bool syncToServerReq::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
+  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
 
   if (has_serinfo()) {
     if (!this->serinfo().IsInitialized()) return false;
@@ -3544,6 +3567,7 @@ bool syncToServerReq::IsInitialized() const {
 void syncToServerReq::Swap(syncToServerReq* other) {
   if (other != this) {
     std::swap(serinfo_, other->serinfo_);
+    std::swap(opt_, other->opt_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

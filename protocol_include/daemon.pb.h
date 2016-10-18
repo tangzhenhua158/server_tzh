@@ -161,17 +161,12 @@ class serverInfo : public ::google::protobuf::Message {
   inline ::google::protobuf::int64 serverid() const;
   inline void set_serverid(::google::protobuf::int64 value);
 
-  // optional string extend = 5;
-  inline bool has_extend() const;
-  inline void clear_extend();
-  static const int kExtendFieldNumber = 5;
-  inline const ::std::string& extend() const;
-  inline void set_extend(const ::std::string& value);
-  inline void set_extend(const char* value);
-  inline void set_extend(const char* value, size_t size);
-  inline ::std::string* mutable_extend();
-  inline ::std::string* release_extend();
-  inline void set_allocated_extend(::std::string* extend);
+  // optional int32 ismaster = 5;
+  inline bool has_ismaster() const;
+  inline void clear_ismaster();
+  static const int kIsmasterFieldNumber = 5;
+  inline ::google::protobuf::int32 ismaster() const;
+  inline void set_ismaster(::google::protobuf::int32 value);
 
   // @@protoc_insertion_point(class_scope:daemon_name.serverInfo)
  private:
@@ -183,8 +178,8 @@ class serverInfo : public ::google::protobuf::Message {
   inline void clear_has_servername();
   inline void set_has_serverid();
   inline void clear_has_serverid();
-  inline void set_has_extend();
-  inline void clear_has_extend();
+  inline void set_has_ismaster();
+  inline void clear_has_ismaster();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -192,7 +187,7 @@ class serverInfo : public ::google::protobuf::Message {
   ::google::protobuf::int32 port_;
   ::std::string* servername_;
   ::google::protobuf::int64 serverid_;
-  ::std::string* extend_;
+  ::google::protobuf::int32 ismaster_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
@@ -1184,17 +1179,27 @@ class syncToServerReq : public ::google::protobuf::Message {
   inline ::daemon_name::serverInfo* release_serinfo();
   inline void set_allocated_serinfo(::daemon_name::serverInfo* serinfo);
 
+  // required int32 opt = 2;
+  inline bool has_opt() const;
+  inline void clear_opt();
+  static const int kOptFieldNumber = 2;
+  inline ::google::protobuf::int32 opt() const;
+  inline void set_opt(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:daemon_name.syncToServerReq)
  private:
   inline void set_has_serinfo();
   inline void clear_has_serinfo();
+  inline void set_has_opt();
+  inline void clear_has_opt();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::daemon_name::serverInfo* serinfo_;
+  ::google::protobuf::int32 opt_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
 
   friend void  protobuf_AddDesc_daemon_2eproto();
   friend void protobuf_AssignDesc_daemon_2eproto();
@@ -1701,74 +1706,26 @@ inline void serverInfo::set_serverid(::google::protobuf::int64 value) {
   serverid_ = value;
 }
 
-// optional string extend = 5;
-inline bool serverInfo::has_extend() const {
+// optional int32 ismaster = 5;
+inline bool serverInfo::has_ismaster() const {
   return (_has_bits_[0] & 0x00000010u) != 0;
 }
-inline void serverInfo::set_has_extend() {
+inline void serverInfo::set_has_ismaster() {
   _has_bits_[0] |= 0x00000010u;
 }
-inline void serverInfo::clear_has_extend() {
+inline void serverInfo::clear_has_ismaster() {
   _has_bits_[0] &= ~0x00000010u;
 }
-inline void serverInfo::clear_extend() {
-  if (extend_ != &::google::protobuf::internal::kEmptyString) {
-    extend_->clear();
-  }
-  clear_has_extend();
+inline void serverInfo::clear_ismaster() {
+  ismaster_ = 0;
+  clear_has_ismaster();
 }
-inline const ::std::string& serverInfo::extend() const {
-  return *extend_;
+inline ::google::protobuf::int32 serverInfo::ismaster() const {
+  return ismaster_;
 }
-inline void serverInfo::set_extend(const ::std::string& value) {
-  set_has_extend();
-  if (extend_ == &::google::protobuf::internal::kEmptyString) {
-    extend_ = new ::std::string;
-  }
-  extend_->assign(value);
-}
-inline void serverInfo::set_extend(const char* value) {
-  set_has_extend();
-  if (extend_ == &::google::protobuf::internal::kEmptyString) {
-    extend_ = new ::std::string;
-  }
-  extend_->assign(value);
-}
-inline void serverInfo::set_extend(const char* value, size_t size) {
-  set_has_extend();
-  if (extend_ == &::google::protobuf::internal::kEmptyString) {
-    extend_ = new ::std::string;
-  }
-  extend_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* serverInfo::mutable_extend() {
-  set_has_extend();
-  if (extend_ == &::google::protobuf::internal::kEmptyString) {
-    extend_ = new ::std::string;
-  }
-  return extend_;
-}
-inline ::std::string* serverInfo::release_extend() {
-  clear_has_extend();
-  if (extend_ == &::google::protobuf::internal::kEmptyString) {
-    return NULL;
-  } else {
-    ::std::string* temp = extend_;
-    extend_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-    return temp;
-  }
-}
-inline void serverInfo::set_allocated_extend(::std::string* extend) {
-  if (extend_ != &::google::protobuf::internal::kEmptyString) {
-    delete extend_;
-  }
-  if (extend) {
-    set_has_extend();
-    extend_ = extend;
-  } else {
-    clear_has_extend();
-    extend_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-  }
+inline void serverInfo::set_ismaster(::google::protobuf::int32 value) {
+  set_has_ismaster();
+  ismaster_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -2513,6 +2470,28 @@ inline void syncToServerReq::set_allocated_serinfo(::daemon_name::serverInfo* se
   } else {
     clear_has_serinfo();
   }
+}
+
+// required int32 opt = 2;
+inline bool syncToServerReq::has_opt() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void syncToServerReq::set_has_opt() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void syncToServerReq::clear_has_opt() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void syncToServerReq::clear_opt() {
+  opt_ = 0;
+  clear_has_opt();
+}
+inline ::google::protobuf::int32 syncToServerReq::opt() const {
+  return opt_;
+}
+inline void syncToServerReq::set_opt(::google::protobuf::int32 value) {
+  set_has_opt();
+  opt_ = value;
 }
 
 // -------------------------------------------------------------------
