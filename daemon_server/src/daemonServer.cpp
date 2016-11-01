@@ -150,6 +150,8 @@ void DaemonServiceImpl::syncServer(::google::protobuf::RpcController* controller
 {
 	//更新数据
 
+	if(m_serverInfo.isMaster == 1) return;
+
 	LOG_INFO <<"DaemonServiceImpl "<< __FUNCTION__<<"  servername: "<<request->serinfo().servername();
 
 	if(request->opt() == 1)
@@ -160,6 +162,7 @@ void DaemonServiceImpl::syncServer(::google::protobuf::RpcController* controller
 		pServer->servername = request->serinfo().servername();
 		pServer->serverid = request->serinfo().serverid();
 		pServer->uLastUpdateTime = time(0);
+		pServer->isMaster = request->serinfo().ismaster();
 	
 		//master没法同步过来，需增加字段
 		m_nameServers[pServer->servername].insert(pServer);
@@ -204,13 +207,12 @@ void DaemonServiceImpl::timeCheck()
 {
 	if(m_serverInfo.isMaster)
 	{
-		//master执行 ，由定时器执行此方法更新到其他daemon服务
+		//master执行 ，放到消息队列，发送给所有daemonserver
 		//std::vector<serverInfo_t>	m_addServers;
 		//std::vector<serverInfo_t>	m_delServers;
 
 		//过期的
-		//checkTimeoutServer
-		//syncServer();
+		checkTimeoutServer();
 	}
 }
 
